@@ -6,6 +6,7 @@
 <title>Contact — MXT Productions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <style>
 :root {
   --cyan: #7de8d8;
@@ -222,7 +223,9 @@ nav{
 [data-fs-error=""]:not(:empty){display:block;}
 
 /* submit */
-.submit-row{
+.recaptcha-wrap{padding:1.5rem 0 .5rem;}
+/* force dark theme to match site */
+.g-recaptcha{transform-origin:left top;}
   display:flex;align-items:center;justify-content:space-between;
   padding-top:2.5rem;gap:1rem;flex-wrap:wrap;
 }
@@ -417,6 +420,11 @@ footer{
 
       <div class="field-err" id="err-form" style="padding-top:.5rem;"></div>
 
+      <div class="recaptcha-wrap">
+        <div class="g-recaptcha" data-sitekey="6Lf9PucsAAAAAMbhUeDqVs26kWbiiFzteEPDUr5C" data-theme="dark"></div>
+        <div class="field-err" id="err-captcha"></div>
+      </div>
+
       <div class="submit-row">
         <p class="submit-note">We read every message and respond within a few days.</p>
         <button type="submit" class="btn-submit" id="submitBtn">
@@ -478,7 +486,7 @@ function showErr(id, msg) {
   if (el) { el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
 }
 function clearErrs() {
-  ['err-name','err-email','err-message','err-form'].forEach(id => showErr(id,''));
+  ['err-name','err-email','err-message','err-captcha','err-form'].forEach(id => showErr(id,''));
 }
 function validate() {
   let ok = true;
@@ -488,6 +496,8 @@ function validate() {
   if (!name) { showErr('err-name','Please enter your name.'); ok=false; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('err-email','Please enter a valid email.'); ok=false; }
   if (!msg) { showErr('err-message','Please write a message.'); ok=false; }
+  const captcha = grecaptcha.getResponse();
+  if (!captcha) { showErr('err-captcha','Please complete the reCAPTCHA.'); ok=false; }
   return ok;
 }
 
@@ -499,36 +509,35 @@ form.addEventListener('submit', async e => {
   btn.disabled = true;
   btn.classList.add('sending');
 
-  const data = new FormData(form);
-
   try {
-    const res = await fetch('https://formspree.io/f/xpqbnwvl', {
+    const res = await fetch('/api/contact', {
       method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        inquiry: form.inquiry.value,
+        message: form.message.value.trim(),
+        'g-recaptcha-response': grecaptcha.getResponse(),
+      }),
     });
 
-    if (res.ok) {
-      // success
+    const json = await res.json();
+
+    if (res.ok && json.success) {
       form.style.display = 'none';
       successState.classList.add('visible');
     } else {
-      const json = await res.json();
-      if (json.errors) {
-        json.errors.forEach(err => {
-          if (err.field === 'email') showErr('err-email', err.message);
-          else showErr('err-form', err.message);
-        });
-      } else {
-        showErr('err-form', 'Something went wrong. Please try again.');
-      }
+      showErr('err-form', json.error || 'Something went wrong. Please try again.');
       btn.disabled = false;
       btn.classList.remove('sending');
+      grecaptcha.reset();
     }
   } catch(_) {
     showErr('err-form', 'Network error. Please check your connection and try again.');
     btn.disabled = false;
     btn.classList.remove('sending');
+    grecaptcha.reset();
   }
 });
 
