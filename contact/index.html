@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — MXT Productions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cyan: #7de8d8;
+  --cyan-dim: #3abfad;
+  --cyan-glow: rgba(125,232,216,0.25);
+  --gold: #e8a020;
+  --bg: #07070d;
+  --bg2: #0b0b14;
+  --bg3: #0f0f1a;
+  --text: #ece8dd;
+  --muted: #504c46;
+  --muted2: #2a2620;
+  --border: rgba(125,232,216,0.12);
+  --border-hover: rgba(125,232,216,0.35);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Mono',monospace;
+  overflow-x:hidden;
+  cursor:none;
+  min-height:100vh;
+}
+
+/* NOISE */
+#noise{position:fixed;inset:0;pointer-events:none;z-index:800;opacity:.28;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");}
+
+/* CURSOR */
+#cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--cyan);pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform .15s;box-shadow:0 0 12px var(--cyan-glow);}
+#cur-ring{position:fixed;width:38px;height:38px;border:1px solid rgba(125,232,216,.4);border-radius:50%;pointer-events:none;z-index:9997;transition:opacity .3s;}
+.tdot{position:fixed;border-radius:50%;background:var(--cyan);pointer-events:none;z-index:9996;mix-blend-mode:screen;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 3.5rem;
+  background:rgba(7,7,13,.96);
+  border-bottom:1px solid rgba(125,232,216,.07);
+}
+.nav-logo{font-family:'Rubik Glitch',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:var(--cyan);text-decoration:none;text-shadow:0 0 16px var(--cyan-glow);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+.nav-links a{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-back{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:gap .25s;}
+.nav-back:hover{gap:.8rem;}
+.nav-back::before{content:'←';}
+
+/* PAGE LAYOUT */
+.page{
+  min-height:100vh;
+  padding-top:5rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+
+/* LEFT — info */
+.contact-left{
+  padding:6rem 4rem 6rem 3.5rem;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;
+  border-right:1px solid var(--border);
+}
+
+/* animated background lines */
+.contact-left::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(125,232,216,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(125,232,216,.025) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:gridDrift 20s linear infinite;
+}
+@keyframes gridDrift{0%{background-position:0 0}100%{background-position:60px 60px}}
+
+.contact-left::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 30% 50%,rgba(125,232,216,.04),transparent 70%);
+  pointer-events:none;
+}
+
+.cl-inner{position:relative;z-index:1;}
+
+.cl-eyebrow{
+  font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;
+  color:var(--cyan-dim);margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:1rem;
+  opacity:0;animation:up .8s .2s cubic-bezier(.16,1,.3,1) forwards;
+}
+.cl-eyebrow::before{content:'';width:30px;height:1px;background:var(--cyan-dim);}
+
+.cl-title{
+  font-family:'Rubik Glitch',sans-serif;
+  font-size:clamp(3rem,6vw,6rem);
+  line-height:.88;letter-spacing:.02em;
+  color:var(--text);margin-bottom:2.5rem;
+  opacity:0;animation:up .9s .35s cubic-bezier(.16,1,.3,1) forwards;
+}
+.cl-title span{
+  display:block;color:var(--cyan);
+  text-shadow:0 0 30px rgba(125,232,216,.3);
+}
+
+.cl-desc{
+  font-size:.78rem;line-height:1.9;color:var(--muted);
+  max-width:380px;margin-bottom:3rem;
+  opacity:0;animation:up .8s .5s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+/* inquiry types */
+.inquiry-list{
+  display:flex;flex-direction:column;gap:.75rem;margin-bottom:3rem;
+  opacity:0;animation:up .8s .65s cubic-bezier(.16,1,.3,1) forwards;
+}
+.inquiry-item{
+  display:flex;align-items:center;gap:1rem;
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  padding:.7rem 1rem;border:1px solid rgba(125,232,216,.07);
+  transition:all .3s;cursor:default;
+}
+.inquiry-item:hover{border-color:var(--border-hover);color:var(--cyan);background:rgba(125,232,216,.04);}
+.inquiry-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan-dim);flex-shrink:0;transition:box-shadow .3s;}
+.inquiry-item:hover .inquiry-dot{box-shadow:0 0 8px var(--cyan);}
+
+.cl-socials{
+  display:flex;gap:1.5rem;flex-wrap:wrap;
+  opacity:0;animation:up .8s .8s cubic-bezier(.16,1,.3,1) forwards;
+}
+.social-link{
+  font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted2);text-decoration:none;
+  border-bottom:1px solid var(--muted2);padding-bottom:2px;
+  transition:color .25s,border-color .25s;
+}
+.social-link:hover{color:var(--cyan);border-color:var(--cyan);}
+
+/* RIGHT — form */
+.contact-right{
+  padding:6rem 3.5rem 6rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--bg2);
+  position:relative;
+}
+
+.contact-right::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(125,232,216,.03),transparent 60%);
+  pointer-events:none;
+}
+
+/* FORM */
+#contact-form{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;gap:0;
+  opacity:0;animation:up .9s .4s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.field{position:relative;border-bottom:1px solid rgba(125,232,216,.1);}
+.field:first-child{border-top:1px solid rgba(125,232,216,.1);}
+
+.field label{
+  display:block;
+  font-size:.48rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--cyan-dim);padding:1.2rem 0 .3rem;
+  transition:color .3s;
+}
+.field:focus-within label{color:var(--cyan);}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;background:transparent;border:none;outline:none;
+  font-family:'DM Mono',monospace;
+  font-size:.82rem;color:var(--text);
+  padding:.3rem 0 1.2rem;
+  resize:none;
+  transition:color .3s;
+  -webkit-appearance:none;
+}
+.field select{cursor:pointer;}
+.field select option{background:var(--bg2);color:var(--text);}
+.field textarea{min-height:120px;line-height:1.7;}
+
+/* animated underline */
+.field-line{
+  position:absolute;bottom:-1px;left:0;right:0;height:1px;
+  background:var(--cyan);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.field:focus-within .field-line{transform:scaleX(1);}
+
+/* field error */
+.field-err{
+  font-size:.5rem;letter-spacing:.2em;color:#e05050;
+  padding:.3rem 0;display:none;
+}
+[data-fs-error]:not(:empty){display:block;}
+
+/* form-level messages */
+[data-fs-success]{
+  display:none;
+  font-size:.7rem;letter-spacing:.15em;color:var(--cyan);
+  padding:1rem 0;line-height:1.7;
+}
+[data-fs-success]:not(:empty){display:block;}
+[data-fs-error=""].form-err{
+  font-size:.6rem;letter-spacing:.15em;color:#e05050;
+  padding:.5rem 0;display:none;
+}
+[data-fs-error=""]:not(:empty){display:block;}
+
+/* submit */
+.submit-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:2.5rem;gap:1rem;flex-wrap:wrap;
+}
+.submit-note{font-size:.52rem;letter-spacing:.15em;color:var(--muted);line-height:1.6;max-width:200px;}
+
+.btn-submit{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:'DM Mono',monospace;
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--bg);background:var(--cyan);
+  border:none;padding:.9rem 2rem;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:box-shadow .3s,transform .15s;
+}
+.btn-submit::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,.15);
+  transform:translateX(-101%);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.btn-submit:hover::before{transform:translateX(0);}
+.btn-submit:hover{box-shadow:0 0 30px rgba(125,232,216,.35);}
+.btn-submit:active{transform:scale(.98);}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;}
+.btn-submit:disabled::before{display:none;}
+
+.btn-arrow{transition:transform .3s;}
+.btn-submit:hover .btn-arrow{transform:translateX(4px);}
+
+/* sending spinner */
+.spinner{
+  width:14px;height:14px;border:2px solid rgba(7,7,13,.3);
+  border-top-color:var(--bg);border-radius:50%;
+  animation:spin .7s linear infinite;display:none;
+}
+.btn-submit.sending .btn-label{display:none;}
+.btn-submit.sending .spinner{display:block;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* SUCCESS STATE */
+.success-state{
+  display:none;flex-direction:column;align-items:flex-start;gap:1.5rem;
+  padding:3rem 0;
+}
+.success-state.visible{display:flex;}
+.success-icon{
+  width:48px;height:48px;border-radius:50%;
+  background:rgba(125,232,216,.1);border:1px solid var(--cyan-dim);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;
+  animation:scaleIn .5s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes scaleIn{from{transform:scale(0)}to{transform:scale(1)}}
+.success-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;font-style:italic;font-weight:300;color:var(--text);
+}
+.success-sub{font-size:.68rem;line-height:1.8;color:var(--muted);}
+.success-back{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cyan);text-decoration:none;
+  border:1px solid var(--cyan-dim);padding:.6rem 1.2rem;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.success-back::before{content:'';position:absolute;inset:0;background:var(--cyan);transform:translateX(-101%);transition:transform .3s cubic-bezier(.16,1,.3,1);}
+.success-back:hover::before{transform:translateX(0);}
+.success-back:hover{color:var(--bg);}
+.success-back span{position:relative;z-index:1;}
+
+@keyframes up{
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid rgba(125,232,216,.08);
+  padding:2rem 3.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg);
+}
+.foot-logo{font-family:'Rubik Glitch',sans-serif;font-size:1rem;letter-spacing:.08em;color:rgba(125,232,216,.15);}
+.foot-cp{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted2);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  nav{padding:.9rem 1.5rem;}
+  .nav-links{display:none;}
+  .page{grid-template-columns:1fr;}
+  .contact-left{padding:5rem 1.5rem 3rem;border-right:none;border-bottom:1px solid var(--border);}
+  .contact-right{padding:3rem 1.5rem 5rem;}
+  footer{padding:1.5rem;}
+  body{cursor:auto;}
+  #cur,#cur-ring{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="noise"></div>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<nav>
+  <a href="/" class="nav-logo">MXT</a>
+  <ul class="nav-links">
+    <li><a href="/#music-panel">Music</a></li>
+    <li><a href="/#software-panel">Software</a></li>
+    <li><a href="/#film-panel">Film</a></li>
+  </ul>
+  <a href="/" class="nav-back">Back to MXT</a>
+</nav>
+
+<main class="page">
+
+  <!-- LEFT -->
+  <div class="contact-left">
+    <div class="cl-inner">
+      <div class="cl-eyebrow">Contact</div>
+
+      <h1 class="cl-title">
+        Let's build<br>
+        <span>something.</span>
+      </h1>
+
+      <p class="cl-desc">
+        Whether it's a music collab, a software project, a film concept, or just a conversation — reach out. We respond to everything.
+      </p>
+
+      <div class="inquiry-list">
+        <div class="inquiry-item"><div class="inquiry-dot"></div>Music & artist collabs</div>
+        <div class="inquiry-item"><div class="inquiry-dot"></div>Software & design projects</div>
+        <div class="inquiry-item"><div class="inquiry-dot"></div>Film & multimedia</div>
+        <div class="inquiry-item"><div class="inquiry-dot"></div>General inquiries</div>
+      </div>
+
+      <div class="cl-socials">
+        <a href="https://open.spotify.com/artist/2Sun0dPVvkRS4VfdQepcdO" target="_blank" class="social-link">Spotify (Max)</a>
+        <a href="https://open.spotify.com/artist/7A0nLlwxjd2L6ORHGZv7iL" target="_blank" class="social-link">Spotify (molive)</a>
+        <a href="https://grraphic.xyz" target="_blank" class="social-link">Grraphic</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — FORM -->
+  <div class="contact-right">
+
+    <!-- success state (shown after submit) -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Message sent.</div>
+      <p class="success-sub">Thanks for reaching out — we'll get back to you soon.</p>
+      <a href="/" class="success-back"><span>← Back to MXT</span></a>
+    </div>
+
+    <!-- form -->
+    <form id="contact-form" novalidate>
+
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
+        <div class="field-line"></div>
+        <div class="field-err" id="err-name"></div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <div class="field-line"></div>
+        <div class="field-err" id="err-email"></div>
+      </div>
+
+      <div class="field">
+        <label for="inquiry">Inquiry type</label>
+        <select id="inquiry" name="inquiry">
+          <option value="">— Select one</option>
+          <option value="Music collab">Music collab</option>
+          <option value="Software project">Software project</option>
+          <option value="Film & multimedia">Film & multimedia</option>
+          <option value="General">General</option>
+        </select>
+        <div class="field-line"></div>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="What's on your mind..." required></textarea>
+        <div class="field-line"></div>
+        <div class="field-err" id="err-message"></div>
+      </div>
+
+      <div class="field-err" id="err-form" style="padding-top:.5rem;"></div>
+
+      <div class="submit-row">
+        <p class="submit-note">We read every message and respond within a few days.</p>
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span class="btn-label">Send Message</span>
+          <span class="btn-arrow">→</span>
+          <div class="spinner"></div>
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  <div class="foot-logo">MXT</div>
+  <p class="foot-cp">© 2024 MXT Productions · mxt.productions</p>
+</footer>
+
+<script>
+/* ── CURSOR + TRAIL ── */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+const TRAIL=12;
+const dots=[],trX=new Array(TRAIL).fill(0),trY=new Array(TRAIL).fill(0);
+for(let i=0;i<TRAIL;i++){
+  const d=document.createElement('div');d.className='tdot';
+  const s=Math.max(1.5,5.5-i*.32);
+  d.style.cssText=`width:${s}px;height:${s}px;opacity:${(1-i/TRAIL)*.45};margin-left:-${s/2}px;margin-top:-${s/2}px;`;
+  document.body.appendChild(d);dots.push(d);
+}
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=(mx-5)+'px';cur.style.top=(my-5)+'px';
+});
+(function ac(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=(rx-19)+'px';ring.style.top=(ry-19)+'px';
+  let px=mx,py=my;
+  for(let i=0;i<TRAIL;i++){
+    trX[i]+=(px-trX[i])*(.35-i*.02);trY[i]+=(py-trY[i])*(.35-i*.02);
+    dots[i].style.left=trX[i]+'px';dots[i].style.top=trY[i]+'px';
+    px=trX[i];py=trY[i];
+  }
+  requestAnimationFrame(ac);
+})();
+document.querySelectorAll('a,button,select,.inquiry-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='scale(3.5)';ring.style.opacity='0';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.opacity='1';});
+});
+
+/* ── FORMSPREE AJAX ── */
+const form = document.getElementById('contact-form');
+const btn  = document.getElementById('submitBtn');
+const successState = document.getElementById('successState');
+
+function showErr(id, msg) {
+  const el = document.getElementById(id);
+  if (el) { el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
+}
+function clearErrs() {
+  ['err-name','err-email','err-message','err-form'].forEach(id => showErr(id,''));
+}
+function validate() {
+  let ok = true;
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const msg = form.message.value.trim();
+  if (!name) { showErr('err-name','Please enter your name.'); ok=false; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('err-email','Please enter a valid email.'); ok=false; }
+  if (!msg) { showErr('err-message','Please write a message.'); ok=false; }
+  return ok;
+}
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  clearErrs();
+  if (!validate()) return;
+
+  btn.disabled = true;
+  btn.classList.add('sending');
+
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch('https://formspree.io/f/xpqbnwvl', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      // success
+      form.style.display = 'none';
+      successState.classList.add('visible');
+    } else {
+      const json = await res.json();
+      if (json.errors) {
+        json.errors.forEach(err => {
+          if (err.field === 'email') showErr('err-email', err.message);
+          else showErr('err-form', err.message);
+        });
+      } else {
+        showErr('err-form', 'Something went wrong. Please try again.');
+      }
+      btn.disabled = false;
+      btn.classList.remove('sending');
+    }
+  } catch(_) {
+    showErr('err-form', 'Network error. Please check your connection and try again.');
+    btn.disabled = false;
+    btn.classList.remove('sending');
+  }
+});
+
+/* clear field errors on input */
+['name','email','message'].forEach(name => {
+  const el = form[name];
+  if (el) el.addEventListener('input', () => showErr('err-'+name,''));
+});
+</script>
+</body>
+</html>
