@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MXT Productions — independent music label, software studio, and film division based in Greenville, SC.">
 <title>MXT Productions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -307,7 +308,7 @@ footer{border-top:1px solid rgba(125,232,216,.08);padding:3rem 3.5rem 2.5rem;dis
       <div class="ac-name">Max Oliver</div>
       <p class="ac-desc">Piano, composition, and original works. Live performances and studio recordings spanning classical influence and contemporary electronic.</p>
       <div class="rr"><div class="rr-tag">Latest Release</div><div class="rr-title">Darkside (Piano Cover)</div><div class="rr-meta">Single &nbsp;·&nbsp; 2025</div></div>
-      <a href="https://open.spotify.com/artist/2Sun0dPVvkRS4VfdQepcdO" target="_blank" class="btn"><span class="b">Listen on Spotify ↗</span></a>
+      <a href="https://open.spotify.com/artist/2Sun0dPVvkRS4VfdQepcdO" target="_blank" rel="noopener noreferrer" class="btn"><span class="b">Listen on Spotify ↗</span></a>
     </div>
     <div class="acard" id="ac2">
       <div class="ac-ey">Producer</div>
@@ -315,7 +316,7 @@ footer{border-top:1px solid rgba(125,232,216,.08);padding:3rem 3.5rem 2.5rem;dis
       <div class="ac-name">molive6316</div>
       <p class="ac-desc">Production alias. Exploring ambient, electronic, and hybrid orchestral sounds. Independently released under the MXT label.</p>
       <div class="rr"><div class="rr-tag">Latest Release</div><div class="rr-title">On Fire</div><div class="rr-meta">Single &nbsp;·&nbsp; 2026</div></div>
-      <a href="https://open.spotify.com/artist/7A0nLlwxjd2L6ORHGZv7iL" target="_blank" class="btn btn-g"><span class="b">Explore ↗</span></a>
+      <a href="https://open.spotify.com/artist/7A0nLlwxjd2L6ORHGZv7iL" target="_blank" rel="noopener noreferrer" class="btn btn-g"><span class="b">Explore ↗</span></a>
     </div>
   </div>
   <div class="lstrip" id="lstrip" style="margin-top:1px;">
@@ -337,7 +338,7 @@ footer{border-top:1px solid rgba(125,232,216,.08);padding:3rem 3.5rem 2.5rem;dis
   </h2>
   <div class="prow" id="pr1">
     <div><div class="pr-ey">Product</div><div class="pr-nm">Grraphic</div><span class="badge live">Live</span></div>
-    <div><p class="pr-ds">AI-powered design review tool. Upload your designs and receive structured feedback on layout, visual hierarchy, color theory, and accessibility — in seconds.</p><a href="https://grraphic.xyz" target="_blank" class="btn"><span class="b">Visit Grraphic ↗</span></a></div>
+    <div><p class="pr-ds">AI-powered design review tool. Upload your designs and receive structured feedback on layout, visual hierarchy, color theory, and accessibility — in seconds.</p><a href="https://grraphic.xyz" target="_blank" rel="noopener noreferrer" class="btn"><span class="b">Visit Grraphic ↗</span></a></div>
   </div>
   <div class="prow" id="pr2">
     <div><div class="pr-ey">Product</div><div class="pr-nm">mybrain</div><span class="badge dev">In Development</span></div>
@@ -370,7 +371,7 @@ footer{border-top:1px solid rgba(125,232,216,.08);padding:3rem 3.5rem 2.5rem;dis
 <footer>
   <div class="foot-mark">MXT</div>
   <div class="foot-r">
-    <p class="foot-cp">© 2024 MXT Productions</p>
+    <p class="foot-cp">© 2026 MXT Productions</p>
     <p class="foot-cp" style="color:var(--muted2)">mxt.productions</p>
   </div>
 </footer>
@@ -501,13 +502,10 @@ const orbG=new THREE.Group();
 scene.add(orbG);
 
 /* ── GSAP HERO ENTRANCE ── */
-gsap.to('#hEye',{opacity:1,y:0,duration:.8,delay:.3,ease:'power3.out',transform:'translateY(0)'});
-gsap.from('#hEye',{y:22,duration:.8,delay:.3,ease:'power3.out'});
-gsap.to('#hProd',{opacity:1,duration:1,delay:1.3,ease:'power3.out'});
-gsap.from('#hProd',{y:22,duration:1,delay:1.3,ease:'power3.out'});
-gsap.to('#hTags',{opacity:1,duration:.8,delay:1.6,ease:'power3.out'});
-gsap.from('#hTags',{y:22,duration:.8,delay:1.6,ease:'power3.out'});
-gsap.to('#hScroll',{opacity:1,duration:.8,delay:2,ease:'power3.out'});
+gsap.fromTo('#hEye',{y:22,opacity:0},{opacity:1,y:0,duration:.8,delay:.3,ease:'power3.out'});
+gsap.fromTo('#hProd',{y:22,opacity:0},{opacity:1,y:0,duration:1,delay:1.3,ease:'power3.out'});
+gsap.fromTo('#hTags',{y:22,opacity:0},{opacity:1,y:0,duration:.8,delay:1.6,ease:'power3.out'});
+gsap.fromTo('#hScroll',{opacity:0},{opacity:1,duration:.8,delay:2,ease:'power3.out'});
 
 /* ── GSAP SCROLL ANIMATIONS ── */
 
@@ -542,13 +540,10 @@ gsap.to('#ml',{width:120,duration:1.2,ease:'power3.out',
   scrollTrigger:{trigger:'#secMusic',start:'top 80%'}});
 
 // title chars — staggered wipe
-gsap.to('#mt .ch',{
-  y:0,rotateX:0,opacity:1,
-  stagger:.07,duration:.9,ease:'power3.out',
-  scrollTrigger:{trigger:'#mt',start:'top 85%'}
-});
-gsap.from('#mt .ch',{y:'110%',rotateX:80,opacity:0,stagger:.07,duration:.9,ease:'power3.out',
-  scrollTrigger:{trigger:'#mt',start:'top 85%'}});
+gsap.fromTo('#mt .ch',
+  {y:'110%',rotateX:80,opacity:0},
+  {y:0,rotateX:0,opacity:1,stagger:.07,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:'#mt',start:'top 85%'}});
 
 // artist cards slide in from sides
 gsap.from('#ac1',{x:-80,opacity:0,duration:1,ease:'power3.out',
@@ -566,10 +561,10 @@ gsap.from('#sn',{x:-40,opacity:0,duration:.8,ease:'power3.out',
 gsap.to('#sl',{width:120,duration:1.2,ease:'power3.out',
   scrollTrigger:{trigger:'#secSoftware',start:'top 80%'}});
 
-gsap.to('#st .ch',{y:0,rotateX:0,opacity:1,stagger:.07,duration:.9,ease:'power3.out',
-  scrollTrigger:{trigger:'#st',start:'top 85%'}});
-gsap.from('#st .ch',{y:'110%',rotateX:80,opacity:0,stagger:.07,duration:.9,ease:'power3.out',
-  scrollTrigger:{trigger:'#st',start:'top 85%'}});
+gsap.fromTo('#st .ch',
+  {y:'110%',rotateX:80,opacity:0},
+  {y:0,rotateX:0,opacity:1,stagger:.07,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:'#st',start:'top 85%'}});
 
 gsap.from('#pr1',{x:-60,opacity:0,duration:.9,ease:'power3.out',
   scrollTrigger:{trigger:'#pr1',start:'top 82%'}});
@@ -646,6 +641,7 @@ document.querySelectorAll('.acard').forEach(card=>{
 });
 
 /* ── THREE RENDER LOOP ── */
+let renderPaused=false;
 let clk=0,et=0,tMX=0,tMY=0,sMX=0,sMY=0;
 document.addEventListener('mousemove',e=>{
   tMX=(e.clientX/window.innerWidth-.5)*2;
@@ -653,6 +649,7 @@ document.addEventListener('mousemove',e=>{
 });
 function render(){
   requestAnimationFrame(render);
+  if(renderPaused)return;
   clk+=.01;et+=.016;
   sMX+=(tMX-sMX)*.05;sMY+=(tMY-sMY)*.05;
 
@@ -674,6 +671,7 @@ function render(){
   const fade=Math.max(0,1-sy/(window.innerHeight*.7));
   MXT.position.z=-sy*.015;
   canvas.style.opacity=fade;
+  renderPaused=(fade===0);
 
   allCubes.forEach(c=>{
     c.userData.gt-=.016;
