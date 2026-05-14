@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Get in touch with MXT Productions — music collabs, software projects, film & multimedia, or general inquiries.">
+<meta property="og:title" content="Contact — MXT Productions">
+<meta property="og:description" content="Get in touch — music collabs, software projects, film & multimedia, or general inquiries.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mxt.productions/contact">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307070d'/%3E%3Ctext x='16' y='22' font-family='monospace' font-weight='bold' font-size='11' fill='%237de8d8' text-anchor='middle'%3EMXT%3C/text%3E%3C/svg%3E">
 <title>Contact — MXT Productions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -23,7 +30,7 @@
   --border-hover: rgba(125,232,216,0.35);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth;}}
 body{
   background:var(--bg);
   color:var(--text);
@@ -226,6 +233,7 @@ nav{
 .recaptcha-wrap{padding:1.5rem 0 .5rem;}
 /* force dark theme to match site */
 .g-recaptcha{transform-origin:left top;}
+.submit-row{
   display:flex;align-items:center;justify-content:space-between;
   padding-top:2.5rem;gap:1rem;flex-wrap:wrap;
 }
@@ -311,6 +319,16 @@ footer{
 .foot-logo{font-family:'Rubik Glitch',sans-serif;font-size:1rem;letter-spacing:.08em;color:rgba(125,232,216,.15);}
 .foot-cp{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted2);}
 
+/* KEYBOARD FOCUS */
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px;}
+
+/* REDUCED MOTION */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+  #cur,#cur-ring,.tdot{display:none!important;}
+  body{cursor:auto!important;}
+}
+
 /* RESPONSIVE */
 @media(max-width:860px){
   nav{padding:.9rem 1.5rem;}
@@ -364,9 +382,9 @@ footer{
       </div>
 
       <div class="cl-socials">
-        <a href="https://open.spotify.com/artist/2Sun0dPVvkRS4VfdQepcdO" target="_blank" class="social-link">Spotify (Max)</a>
-        <a href="https://open.spotify.com/artist/7A0nLlwxjd2L6ORHGZv7iL" target="_blank" class="social-link">Spotify (molive)</a>
-        <a href="https://grraphic.xyz" target="_blank" class="social-link">Grraphic</a>
+        <a href="https://open.spotify.com/artist/2Sun0dPVvkRS4VfdQepcdO" target="_blank" rel="noopener noreferrer" class="social-link">Spotify (Max)</a>
+        <a href="https://open.spotify.com/artist/7A0nLlwxjd2L6ORHGZv7iL" target="_blank" rel="noopener noreferrer" class="social-link">Spotify (molive)</a>
+        <a href="https://grraphic.xyz" target="_blank" rel="noopener noreferrer" class="social-link">Grraphic</a>
       </div>
     </div>
   </div>
@@ -441,11 +459,14 @@ footer{
 
 <footer>
   <div class="foot-logo">MXT</div>
-  <p class="foot-cp">© 2024 MXT Productions · mxt.productions</p>
+  <p class="foot-cp">© 2026 MXT Productions · mxt.productions</p>
 </footer>
 
 <script>
 /* ── CURSOR + TRAIL ── */
+const prefersReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const isTouch=window.matchMedia('(hover:none) and (pointer:coarse)').matches;
+if(!prefersReduced && !isTouch){
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 const TRAIL=12;
 const dots=[],trX=new Array(TRAIL).fill(0),trY=new Array(TRAIL).fill(0);
@@ -475,6 +496,7 @@ document.querySelectorAll('a,button,select,.inquiry-item').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.transform='scale(3.5)';ring.style.opacity='0';});
   el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.opacity='1';});
 });
+}
 
 /* ── FORMSPREE AJAX ── */
 const form = document.getElementById('contact-form');
