@@ -10,6 +10,7 @@
 <meta property="og:url" content="https://mxt.productions">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307070d'/%3E%3Ctext x='16' y='22' font-family='monospace' font-weight='bold' font-size='11' fill='%237de8d8' text-anchor='middle'%3EMXT%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#07070d">
 <title>MXT Productions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -52,7 +53,7 @@ body{
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:9500;display:flex;align-items:center;justify-content:space-between;padding:1.8rem 3.5rem;transition:padding .4s,background .5s,border-color .5s;border-bottom:1px solid transparent;isolation:isolate;}
-nav.dk{background:rgba(7,7,13,.96);border-color:rgba(125,232,216,.07);padding:1rem 3.5rem;}
+nav.dk{background:rgba(7,7,13,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:rgba(125,232,216,.09);padding:1rem 3.5rem;}
 .nav-logo{font-family:'Rubik Glitch',sans-serif;font-size:1.5rem;letter-spacing:.08em;color:rgba(7,7,13,.85);text-decoration:none;transition:color .5s,text-shadow .5s;}
 nav.dk .nav-logo{color:var(--cyan);text-shadow:0 0 16px var(--cyan-glow);}
 .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
@@ -390,9 +391,67 @@ footer{border-top:1px solid rgba(125,232,216,.08);padding:3rem 3.5rem 2.5rem;dis
 }
 @keyframes fmShimmer{0%,100%{background-position:150% 0;}50%{background-position:-50% 0;}}
 
+/* ── SCROLL RING PROGRESS ── */
+#prog-ring{position:fixed;bottom:2rem;right:2rem;width:38px;height:38px;z-index:9000;pointer-events:none;opacity:0;transition:opacity .4s;}
+#prog-ring circle{fill:none;stroke:rgba(125,232,216,.12);stroke-width:1.5;}
+#prog-ring .arc{stroke:var(--cyan);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:101;stroke-dashoffset:101;transition:stroke-dashoffset .1s linear;filter:drop-shadow(0 0 4px var(--cyan-glow));}
+@media(max-width:860px){#prog-ring{display:none;}}
+
+/* ── HERO GRADIENT MOUSE ── */
+.h-grad{transition:background-position .6s ease-out;}
+
 /* ── MAGNETIC BUTTON ── */
 #ctaBtn{display:inline-flex;will-change:transform;}
 #ctaBtn.attracting{box-shadow:0 0 40px rgba(125,232,216,.18)!important;}
+
+/* ── PAGE LOADER ── */
+#loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+.ld-logo{font-family:'Rubik Glitch',sans-serif;font-size:clamp(5rem,15vw,12rem);letter-spacing:.06em;color:var(--cyan);text-shadow:0 0 60px var(--cyan-glow);animation:ldGlitch 1.4s steps(1) infinite;}
+@keyframes ldGlitch{
+  0%,13%{text-shadow:0 0 60px var(--cyan-glow);}
+  14%{text-shadow:3px 0 0 rgba(232,160,32,.85),-3px 0 0 rgba(125,232,216,.65),0 0 60px var(--cyan-glow);}
+  15%,29%{text-shadow:0 0 60px var(--cyan-glow);}
+  30%{text-shadow:-2px 0 0 rgba(125,232,216,.9),2px 0 0 rgba(232,160,32,.7),0 0 80px var(--cyan-glow);}
+  31%,87%{text-shadow:0 0 60px var(--cyan-glow);}
+  88%{text-shadow:4px 0 0 rgba(232,160,32,.65),-4px 0 0 rgba(125,232,216,.85),0 0 90px var(--cyan-glow);}
+  90%,100%{text-shadow:0 0 60px var(--cyan-glow);}
+}
+.ld-bar-wrap{width:200px;height:1px;background:rgba(125,232,216,.1);}
+.ld-fill{height:1px;width:0;background:linear-gradient(to right,var(--cyan-dim),var(--cyan));box-shadow:0 0 8px var(--cyan-glow);}
+.ld-label{font-size:.42rem;letter-spacing:.55em;text-transform:uppercase;color:rgba(125,232,216,.28);}
+
+/* ── HERO WATERMARK ── */
+.h-watermark{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden;}
+.h-watermark span{font-family:'Rubik Glitch',sans-serif;font-size:clamp(16rem,38vw,46rem);line-height:1;letter-spacing:.04em;color:transparent;-webkit-text-stroke:1px rgba(7,7,13,.16);user-select:none;animation:wmFloat 14s ease-in-out infinite;}
+@keyframes wmFloat{0%,100%{transform:translateY(0) rotate(-.6deg);}50%{transform:translateY(-14px) rotate(.6deg);}}
+
+/* ── TERMINAL CHROME ── */
+.term-win{grid-column:1/-1;background:rgba(4,4,9,.9);border:1px solid rgba(125,232,216,.1);border-radius:6px 6px 0 0;overflow:hidden;margin-bottom:2rem;}
+.term-bar{display:flex;align-items:center;gap:.6rem;padding:.5rem .85rem;background:rgba(16,16,24,.95);border-bottom:1px solid rgba(125,232,216,.07);}
+.td{width:10px;height:10px;border-radius:50%;}
+.td.red{background:#c0392b;}.td.yellow{background:#f39c12;}.td.green{background:#27ae60;}
+.tw-url{flex:1;text-align:center;font-size:.44rem;letter-spacing:.16em;color:rgba(125,232,216,.22);padding:.18rem .8rem;background:rgba(125,232,216,.03);border-radius:3px;margin:0 .5rem;}
+.tw-status{font-size:.4rem;letter-spacing:.18em;color:rgba(40,160,80,.55);white-space:nowrap;}
+.tw-status.building{color:rgba(232,160,32,.55);}
+.term-body{padding:.9rem 1.2rem;font-size:.6rem;line-height:2;color:rgba(125,232,216,.38);font-family:'DM Mono',monospace;}
+.tc{color:rgba(125,232,216,.78);}.tv{color:rgba(232,160,32,.68);}.ts{color:rgba(125,232,216,.2);}
+.term-cursor{display:inline-block;width:.5em;height:.9em;background:var(--cyan);opacity:.85;vertical-align:middle;animation:blink .75s step-end infinite;margin-left:.1em;}
+
+/* ── SECTION SIDE LABEL ── */
+.sec-aside{position:absolute;right:.6rem;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;text-orientation:mixed;font-size:.36rem;letter-spacing:.55em;text-transform:uppercase;color:rgba(125,232,216,.06);user-select:none;pointer-events:none;white-space:nowrap;z-index:0;}
+@media(max-width:860px){.sec-aside{display:none;}}
+
+/* ── PER-SECTION TITLE GRADIENTS ── */
+#music-panel .sec-title{background:linear-gradient(135deg,var(--text) 25%,var(--gold) 70%,var(--gold2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+#software-panel .sec-title{background:linear-gradient(135deg,var(--text) 25%,var(--cyan) 70%,var(--cyan-dim) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ── CTA TYPEMARK ── */
+.cta-mark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden;z-index:0;}
+.cta-mark span{font-family:'Rubik Glitch',sans-serif;font-size:clamp(10rem,26vw,30rem);letter-spacing:.06em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(125,232,216,.035);user-select:none;animation:wmFloat 20s ease-in-out infinite reverse;}
+
+/* ── PROW COLUMN GAP SPLIT ── */
+.prow{column-gap:5rem;row-gap:0;}
+@media(max-width:860px){.prow{column-gap:0;}}
 
 /* VISUALLY HIDDEN */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
@@ -427,6 +486,26 @@ nav.dk .nav-ham span{background:var(--muted);}
 .btn-disabled{cursor:default!important;opacity:.4;pointer-events:none;}
 .foot-url{color:var(--muted2);}
 
+/* ── ENHANCED ACARD GLOW ── */
+.acard:hover{box-shadow:0 0 60px rgba(125,232,216,.04),0 20px 60px rgba(0,0,0,.4);}
+.acard{transition:background .4s,box-shadow .5s;}
+
+/* ── VINYL GROOVE ENHANCEMENT ── */
+.vdisc{position:relative;}
+.vdisc::before{content:'';position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle,transparent 30%,rgba(255,255,255,.015) 31%,transparent 32%,rgba(255,255,255,.012) 40%,transparent 41%,rgba(255,255,255,.01) 50%,transparent 51%,rgba(255,255,255,.008) 60%,transparent 61%);}
+
+/* ── SEC LABEL GLOW ── */
+.sec-num{color:var(--cyan-dim);text-shadow:0 0 20px rgba(125,232,216,.3);}
+.sec-line{box-shadow:0 0 8px rgba(125,232,216,.15);}
+
+/* ── FILM STRIP SCROLL ── */
+@keyframes filmScroll{0%{transform:translateX(0);}100%{transform:translateX(-64px);}}
+.film-strip:not(.fs-paused){animation:filmScroll 2s linear infinite;}
+
+/* ── STAT HOVER BORDER ── */
+.stat{transition:background .4s,border-color .5s;border:1px solid transparent;}
+.stat:hover{border-color:rgba(125,232,216,.08);}
+
 /* REDUCED MOTION */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
@@ -438,9 +517,18 @@ nav.dk .nav-ham span{background:var(--muted);}
 </style>
 </head>
 <body>
+<div id="loader" aria-hidden="true">
+  <div class="ld-logo">MXT</div>
+  <div class="ld-bar-wrap"><div class="ld-fill" id="ldFill"></div></div>
+  <div class="ld-label">Loading</div>
+</div>
 <div id="noise"></div>
 <div class="page-scan" aria-hidden="true"></div>
 <div id="prog"></div>
+<svg id="prog-ring" viewBox="0 0 38 38" aria-hidden="true">
+  <circle cx="19" cy="19" r="16"/>
+  <circle class="arc" cx="19" cy="19" r="16" transform="rotate(-90 19 19)"/>
+</svg>
 <div id="vel"></div>
 <div id="cur"></div>
 <div id="cur-ring"></div>
@@ -469,6 +557,7 @@ nav.dk .nav-ham span{background:var(--muted);}
 <section id="hero" aria-labelledby="site-heading">
   <h1 id="site-heading" class="sr-only">MXT Productions</h1>
   <div class="h-grad"></div>
+  <div class="h-watermark" aria-hidden="true"><span>MXT</span></div>
   <div class="h-grid" id="hGrid"></div>
   <div class="h-scan"></div>
   <div class="h-vig"></div>
@@ -529,6 +618,7 @@ nav.dk .nav-ham span{background:var(--muted);}
     <a href="/contact" class="btn"><span class="b">Work With Us ↗</span></a>
   </div>
 </div>
+<div class="sec-aside" aria-hidden="true">MXT Productions — Music Division — Independent Label — Est. 2024</div>
 </section>
 
 <!-- ═══ SOFTWARE ═══ -->
@@ -542,14 +632,37 @@ nav.dk .nav-ham span{background:var(--muted);}
     <span class="cw"><span class="ch">B</span></span><span class="cw"><span class="ch">u</span></span><span class="cw"><span class="ch">i</span></span><span class="cw"><span class="ch">l</span></span><span class="cw"><span class="ch">d</span></span>
   </h2>
   <div class="prow" id="pr1">
+    <div class="term-win" aria-hidden="true">
+      <div class="term-bar">
+        <div class="td red"></div><div class="td yellow"></div><div class="td green"></div>
+        <div class="tw-url">grraphic.xyz</div>
+        <span class="tw-status">● live</span>
+      </div>
+      <div class="term-body">
+        <span class="ts">$</span> <span class="tc">npx grraphic</span> <span class="tv">--mode</span> production<br>
+        <span class="ts">→</span> all systems operational — v2.1<span class="term-cursor"></span>
+      </div>
+    </div>
     <div><div class="pr-ey">Product</div><div class="pr-nm">Grraphic</div><span class="badge live">Live</span></div>
     <div><p class="pr-ds">AI-powered design review tool. Upload your designs and receive structured feedback on layout, visual hierarchy, color theory, and accessibility — in seconds.</p><a href="https://grraphic.xyz" target="_blank" rel="noopener noreferrer" class="btn"><span class="b">Visit Grraphic ↗</span></a></div>
   </div>
   <div class="prow" id="pr2">
+    <div class="term-win" aria-hidden="true">
+      <div class="term-bar">
+        <div class="td red"></div><div class="td yellow"></div><div class="td green"></div>
+        <div class="tw-url">mybrain.app</div>
+        <span class="tw-status building">◌ building</span>
+      </div>
+      <div class="term-body">
+        <span class="ts">$</span> <span class="tc">git status</span><br>
+        <span class="ts">→</span> branch <span class="tv">dev</span> — 14 commits ahead of origin<span class="term-cursor"></span>
+      </div>
+    </div>
     <div><div class="pr-ey">Product</div><div class="pr-nm">mybrain</div><span class="badge dev">In Development</span></div>
     <div><p class="pr-ds">A link-in-bio hub built for developers. Centralize your projects, music, socials, and identity into one polished public profile — with a private dashboard behind it.</p><span class="btn btn-g btn-disabled" aria-disabled="true"><span class="b">Coming Soon</span></span></div>
   </div>
 </div>
+<div class="sec-aside" aria-hidden="true">MXT Productions — Software Division — Building in Public — Est. 2024</div>
 </section>
 
 <!-- ═══ FILM ═══ -->
@@ -590,6 +703,7 @@ nav.dk .nav-ham span{background:var(--muted);}
 
 <!-- ═══ CTA ═══ -->
 <section id="cta-panel">
+  <div class="cta-mark" aria-hidden="true"><span>MXT</span></div>
   <div class="cta-rings" aria-hidden="true"><div class="cta-ring"></div><div class="cta-ring"></div><div class="cta-ring"></div><div class="cta-ring"></div></div>
   <p class="cta-ey" id="ctaEy">Get In Touch</p>
   <h2 class="cta-ttl" id="ctaTtl">Let's make something<br>worth remembering.</h2>
@@ -639,6 +753,19 @@ const prefersReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matche
 const isTouch=window.matchMedia('(hover:none) and (pointer:coarse)').matches;
 if(prefersReduced)gsap.defaults({duration:0,delay:0});
 
+/* ── LOADER ── */
+{
+  const loader=document.getElementById('loader');
+  const fill=document.getElementById('ldFill');
+  if(loader&&!prefersReduced){
+    gsap.to(fill,{width:'100%',duration:1.1,ease:'power2.inOut'});
+    gsap.to(loader,{yPercent:-100,duration:.65,ease:'power3.inOut',delay:1.55,
+      onComplete:()=>loader.remove()});
+  } else if(loader){
+    loader.remove();
+  }
+}
+
 /* ── CURSOR + TRAIL ── */
 if(!prefersReduced && !isTouch){
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
@@ -678,6 +805,8 @@ const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 renderer.setSize(window.innerWidth,window.innerHeight);
 renderer.setClearColor(0,0);
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.1;
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(55,window.innerWidth/window.innerHeight,.1,100);
 camera.position.set(0,0,9);
@@ -756,10 +885,11 @@ const orbG=new THREE.Group();
 scene.add(orbG);
 
 /* ── GSAP HERO ENTRANCE ── */
-gsap.fromTo('#hEye',{y:22,opacity:0},{opacity:1,y:0,duration:.8,delay:.3,ease:'power3.out'});
-gsap.fromTo('#hProd',{y:22,opacity:0},{opacity:1,y:0,duration:1,delay:1.3,ease:'power3.out'});
-gsap.fromTo('#hTags',{y:22,opacity:0},{opacity:1,y:0,duration:.8,delay:1.6,ease:'power3.out'});
-gsap.fromTo('#hScroll',{opacity:0},{opacity:1,duration:.8,delay:2,ease:'power3.out'});
+const heroD=prefersReduced?0:2.1;
+gsap.fromTo('#hEye',{y:22,opacity:0},{opacity:1,y:0,duration:.8,delay:heroD+.3,ease:'power3.out'});
+gsap.fromTo('#hProd',{y:22,opacity:0},{opacity:1,y:0,duration:1,delay:heroD+1.3,ease:'power3.out'});
+gsap.fromTo('#hTags',{y:22,opacity:0},{opacity:1,y:0,duration:.8,delay:heroD+1.6,ease:'power3.out'});
+gsap.fromTo('#hScroll',{opacity:0},{opacity:1,duration:.8,delay:heroD+2,ease:'power3.out'});
 
 /* ── GSAP SCROLL ANIMATIONS ── */
 
@@ -799,15 +929,21 @@ gsap.fromTo('#mt .ch',
   {y:0,rotateX:0,opacity:1,stagger:.07,duration:.9,ease:'power3.out',
     scrollTrigger:{trigger:'#mt',start:'top 85%'}});
 
-// artist cards slide in from sides
-gsap.from('#ac1',{x:-80,opacity:0,duration:1,ease:'power3.out',
-  scrollTrigger:{trigger:'#mgrid',start:'top 80%'}});
-gsap.from('#ac2',{x:80,opacity:0,duration:1,ease:'power3.out',delay:.15,
-  scrollTrigger:{trigger:'#mgrid',start:'top 80%'}});
+// artist cards — clip-path wipe reveal (bottom-up)
+gsap.fromTo('#ac1',
+  {clipPath:'inset(0 0 100% 0)'},
+  {clipPath:'inset(0 0 0% 0)',duration:1.15,ease:'expo.out',
+    scrollTrigger:{trigger:'#mgrid',start:'top 80%'}});
+gsap.fromTo('#ac2',
+  {clipPath:'inset(0 0 100% 0)'},
+  {clipPath:'inset(0 0 0% 0)',duration:1.15,ease:'expo.out',delay:.18,
+    scrollTrigger:{trigger:'#mgrid',start:'top 80%'}});
 
-// label strip
-gsap.from('#lstrip',{y:40,opacity:0,duration:.9,ease:'power3.out',delay:.3,
-  scrollTrigger:{trigger:'#lstrip',start:'top 85%'}});
+// label strip — clip-path wipe from left
+gsap.fromTo('#lstrip',
+  {clipPath:'inset(0 100% 0 0)'},
+  {clipPath:'inset(0 0% 0 0)',duration:1.05,ease:'expo.out',delay:.3,
+    scrollTrigger:{trigger:'#lstrip',start:'top 88%'}});
 
 // ── SOFTWARE SECTION ──
 gsap.from('#sn',{x:-40,opacity:0,duration:.8,ease:'power3.out',
@@ -820,16 +956,26 @@ gsap.fromTo('#st .ch',
   {y:0,rotateX:0,opacity:1,stagger:.07,duration:.9,ease:'power3.out',
     scrollTrigger:{trigger:'#st',start:'top 85%'}});
 
-gsap.from('#pr1',{x:-60,opacity:0,duration:.9,ease:'power3.out',
-  scrollTrigger:{trigger:'#pr1',start:'top 82%'}});
-gsap.from('#pr2',{x:-60,opacity:0,duration:.9,ease:'power3.out',delay:.2,
-  scrollTrigger:{trigger:'#pr2',start:'top 82%'}});
+// prows — clip-path wipe bottom-up
+gsap.fromTo('#pr1',
+  {clipPath:'inset(0 0 100% 0)',y:16},
+  {clipPath:'inset(0 0 0% 0)',y:0,duration:1.05,ease:'expo.out',
+    scrollTrigger:{trigger:'#pr1',start:'top 82%'}});
+gsap.fromTo('#pr2',
+  {clipPath:'inset(0 0 100% 0)',y:16},
+  {clipPath:'inset(0 0 0% 0)',y:0,duration:1.05,ease:'expo.out',delay:.2,
+    scrollTrigger:{trigger:'#pr2',start:'top 82%'}});
 
 // ── FILM SECTION ──
-gsap.from('#filmL',{x:-100,opacity:0,duration:1.1,ease:'power3.out',
-  scrollTrigger:{trigger:'#film-panel',start:'top 75%'}});
-gsap.from('#filmR',{x:100,opacity:0,duration:1.1,ease:'power3.out',delay:.2,
-  scrollTrigger:{trigger:'#film-panel',start:'top 75%'}});
+// film — clip-path wipe from left / right
+gsap.fromTo('#filmL',
+  {clipPath:'inset(0 100% 0 0)',x:-16},
+  {clipPath:'inset(0 0% 0 0)',x:0,duration:1.25,ease:'expo.out',
+    scrollTrigger:{trigger:'#film-panel',start:'top 78%'}});
+gsap.fromTo('#filmR',
+  {clipPath:'inset(0 0 0 100%)',x:16},
+  {clipPath:'inset(0 0 0 0%)',x:0,duration:1.25,ease:'expo.out',delay:.22,
+    scrollTrigger:{trigger:'#film-panel',start:'top 78%'}});
 
 // film parallax — title moves faster than quote on scroll
 gsap.to('#filmL',{y:-40,ease:'none',
@@ -838,11 +984,13 @@ gsap.to('#filmR',{y:40,ease:'none',
   scrollTrigger:{trigger:'#film-panel',start:'top bottom',end:'bottom top',scrub:1.5}});
 
 // ── CTA ──
-gsap.from('#ctaEy',{y:30,opacity:0,duration:.8,ease:'power3.out',
+gsap.fromTo('#ctaEy',{y:30,opacity:0},{opacity:1,y:0,duration:.8,ease:'power3.out',
   scrollTrigger:{trigger:'#cta-panel',start:'top 80%'}});
-gsap.from('#ctaTtl',{y:40,opacity:0,duration:1,ease:'power3.out',delay:.15,
-  scrollTrigger:{trigger:'#cta-panel',start:'top 80%'}});
-gsap.from('#ctaBtn',{y:30,opacity:0,duration:.8,ease:'power3.out',delay:.3,
+gsap.fromTo('#ctaTtl',
+  {clipPath:'inset(0 0 100% 0)'},
+  {clipPath:'inset(0 0 0% 0)',duration:1.15,ease:'expo.out',delay:.15,
+    scrollTrigger:{trigger:'#cta-panel',start:'top 80%'}});
+gsap.fromTo('#ctaBtn',{y:30,opacity:0},{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.38,
   scrollTrigger:{trigger:'#cta-panel',start:'top 80%'}});
 
 // ── CONTINUOUS PARALLAX on artist cards ──
@@ -871,7 +1019,9 @@ let mp=0,ms=.7,sv=0;
 })();
 }
 
-/* ── SCROLL VELOCITY ── */
+/* ── SCROLL VELOCITY + RING ── */
+const ring=document.getElementById('prog-ring');
+const arc=ring&&ring.querySelector('.arc');
 let lastY=0;
 window.addEventListener('scroll',()=>{
   sv=Math.abs(window.scrollY-lastY);lastY=window.scrollY;
@@ -879,6 +1029,13 @@ window.addEventListener('scroll',()=>{
   document.getElementById('vel').style.background=`linear-gradient(to bottom,rgba(7,7,13,${a*.4}),rgba(7,7,13,${a}))`;
   clearTimeout(window._vt);
   window._vt=setTimeout(()=>document.getElementById('vel').style.background='transparent',160);
+  // ring progress
+  if(arc){
+    const tot=document.documentElement.scrollHeight-window.innerHeight;
+    const pct=tot>0?window.scrollY/tot:0;
+    arc.style.strokeDashoffset=101-(pct*101);
+    ring.style.opacity=pct>.02?'1':'0';
+  }
 },{passive:true});
 
 /* ── HAMBURGER ── */
@@ -987,6 +1144,25 @@ if(!prefersReduced){
   });
 }
 
+/* ── HERO GRADIENT MOUSE SHIFT ── */
+if(!isTouch&&!prefersReduced){
+  const hGrad=document.querySelector('.h-grad');
+  document.addEventListener('mousemove',e=>{
+    const rx=(e.clientX/window.innerWidth)*100;
+    const ry=(e.clientY/window.innerHeight)*100;
+    hGrad.style.background=`radial-gradient(ellipse 80% 80% at ${25+rx*.1}% ${35+ry*.1}%,#f0b830 0%,#e8901a 40%,#c05010 70%,#8a2a08 100%)`;
+  },{passive:true});
+}
+
+/* ── PARTICLE CONSTELLATION LINES ── */
+const lineMat=new THREE.LineBasicMaterial({color:0x7de8d8,transparent:true,opacity:.06,vertexColors:false});
+const lineGeo=new THREE.BufferGeometry();
+const linePos=new Float32Array(pN*pN*6);
+lineGeo.setAttribute('position',new THREE.BufferAttribute(linePos,3));
+const lines=new THREE.LineSegments(lineGeo,lineMat);
+scene.add(lines);
+const CONN_DIST=3.2;
+
 /* ── THREE RENDER LOOP ── */
 let renderPaused=false;
 let clk=0,et=0,tMX=0,tMY=0,sMX=0,sMY=0;
@@ -1049,11 +1225,26 @@ function render(){
 
   const pa=pGeo.attributes.position.array;
   for(let i=0;i<pN;i++){
-    pa[i*3]+=pV[i].x;pa[i*3+1]+=pV[i].y;
+    pa[i*3]+=pV[i].x+(sMX*.0014);
+    pa[i*3+1]+=pV[i].y-(sMY*.001);
     if(Math.abs(pa[i*3])>9)pV[i].x*=-1;
     if(Math.abs(pa[i*3+1])>6)pV[i].y*=-1;
   }
   pGeo.attributes.position.needsUpdate=true;
+
+  // constellation lines between nearby particles
+  let li=0;
+  for(let a=0;a<pN;a++){
+    for(let b=a+1;b<pN;b++){
+      const dx=pa[a*3]-pa[b*3],dy=pa[a*3+1]-pa[b*3+1],dz=pa[a*3+2]-pa[b*3+2];
+      if(dx*dx+dy*dy+dz*dz<CONN_DIST*CONN_DIST){
+        linePos[li++]=pa[a*3];linePos[li++]=pa[a*3+1];linePos[li++]=pa[a*3+2];
+        linePos[li++]=pa[b*3];linePos[li++]=pa[b*3+1];linePos[li++]=pa[b*3+2];
+      }
+    }
+  }
+  lineGeo.setDrawRange(0,li/3);
+  lineGeo.attributes.position.needsUpdate=true;
 
   sun.intensity=4+Math.sin(clk*.8)*.6;
   sun.position.x=-3+Math.sin(clk*.3)*1.5;
