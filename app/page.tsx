@@ -6,7 +6,7 @@ import s from "./page.module.css";
 const EQ_BARS = [0.5, 0.9, 0.35, 0.7, 1, 0.55, 0.8, 0.4, 0.95, 0.6, 0.75, 0.45, 0.85, 0.5, 0.7, 0.3];
 
 const figures = [
-  { num: "4", label: "Divisions" },
+  { num: "3", label: "Divisions" },
   { num: "2024", label: "Established" },
   { num: "5", label: "Products Built" },
   { num: "1", label: "Signal" },
@@ -30,7 +30,7 @@ export default function Home() {
             <span className={s.barSep}>/</span>
             <span>Est. {site.founded}</span>
             <span className={s.barSep}>/</span>
-            <span>Broadcasting on 4 channels</span>
+            <span>Broadcasting on 3 channels</span>
           </div>
 
           <div className={s.heroInner}>
@@ -55,9 +55,9 @@ export default function Home() {
 
             <div className={s.heroBottom}>
               <p className={s.heroLead}>
-                One studio, four working divisions — software, a web agency, an
-                animation studio, and the business that holds them together.
-                Independent since {site.founded}. <b>Made in-house, end to end.</b>
+                One studio, three working divisions — software, a web agency,
+                and an animation studio. Independent since {site.founded}.{" "}
+                <b>Made in-house, end to end.</b>
               </p>
               <div className={s.heroCtas}>
                 <Link href="#channels" className="btn">
@@ -77,7 +77,7 @@ export default function Home() {
         <Reveal className={s.channelHead}>
           <div>
             <span className="eyebrow">The Channels</span>
-            <h2 style={{ marginTop: "1rem" }}>Four divisions,<br />one frequency.</h2>
+            <h2 style={{ marginTop: "1rem" }}>Three divisions,<br />one frequency.</h2>
           </div>
           <p className="lead">
             Each channel runs on its own — its own work, its own look — but they

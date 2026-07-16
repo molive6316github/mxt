@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
-import { site, contactRoutes, divisions } from "@/content/site";
+import { site, contactRoutes, divisions, legalDivision } from "@/content/site";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -10,8 +10,12 @@ export const metadata: Metadata = {
     "Get in touch with MXT Productions. Inquiries route to the right division — mCloud, Dev, Apex, or Legal.",
 };
 
+// Legal isn't part of the public `divisions` list, but its inquiries still
+// need somewhere to route — look it up alongside the public divisions here.
+const routeLookup = [...divisions, legalDivision];
+
 const accentFor = (value: string) =>
-  divisions.find((d) => d.slug === value)?.accent ?? "#7de8d8";
+  routeLookup.find((d) => d.slug === value)?.accent ?? "#7de8d8";
 
 export default async function ContactPage({
   searchParams,
@@ -50,7 +54,7 @@ export default async function ContactPage({
               {contactRoutes
                 .filter((r) => r.value !== "general")
                 .map((r) => {
-                  const d = divisions.find((x) => x.slug === r.value);
+                  const d = routeLookup.find((x) => x.slug === r.value);
                   return (
                     <div
                       key={r.value}

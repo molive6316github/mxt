@@ -157,7 +157,7 @@
 /* divisions recap */
 .recap {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   border: 1px solid var(--hair);
   border-radius: 4px;
@@ -206,11 +206,6 @@
     grid-template-columns: 1fr;
     gap: 0.4rem;
   }
-  .recap {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 520px) {
   .recap {
     grid-template-columns: 1fr;
   }

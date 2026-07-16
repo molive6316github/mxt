@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site, divisions } from "@/content/site";
+import { site, divisions, legalDivision } from "@/content/site";
 
 export default function Footer() {
   return (
@@ -36,6 +36,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {site.name}
           </span>
           <span>Est. {site.founded} — {site.location}</span>
+          <Link href={legalDivision.href}>{legalDivision.full}</Link>
           <span>{site.domain}</span>
         </div>
       </div>

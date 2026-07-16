@@ -7,7 +7,7 @@
 export const site = {
   name: "MXT Productions",
   domain: "mxt.productions",
-  tagline: "A production house of four.",
+  tagline: "A production house of three.",
   founded: 2024,
   location: "Greenville, SC",
   email: "hello@mxt.productions",
@@ -64,19 +64,24 @@ export const divisions: Division[] = [
     href: "/apex",
     status: "in production",
   },
-  {
-    slug: "legal",
-    callsign: "MXT-04",
-    name: "Legal",
-    full: "MXT Legal",
-    role: "Business & Ops",
-    blurb:
-      "The quiet division. Contracts, structure, and compliance that keep the other three moving.",
-    accent: "#9fb4c6",
-    href: "/legal",
-    status: "internal",
-  },
 ];
+
+// MXT Legal is an internal-only function — deliberately left out of the
+// public `divisions` list above (nav, homepage channels, footer, about
+// recap). Its page still exists at /legal; this just keeps its metadata
+// available wherever it's quietly referenced (e.g. the footer).
+export const legalDivision: Division = {
+  slug: "legal",
+  callsign: "MXT-04",
+  name: "Legal",
+  full: "MXT Legal",
+  role: "Business & Ops",
+  blurb:
+    "The quiet function. Contracts, structure, and compliance that keep the other three moving.",
+  accent: "#9fb4c6",
+  href: "/legal",
+  status: "internal",
+};
 
 // ── MXT DEV — portfolio / case studies ────────────────────────────────────
 export type Project = {
@@ -268,7 +273,7 @@ export const apexReleased: {
 export const legalAreas = [
   {
     title: "Entity & Structure",
-    body: "MXT operates as a single company with four divisions under one legal entity, keeping ownership and liability clean.",
+    body: "MXT operates as a single company — three public-facing divisions plus this internal ops function — under one legal entity, keeping ownership and liability clean.",
   },
   {
     title: "Contracts",
@@ -291,7 +296,7 @@ export const founder = {
   role: "Founder & Director",
   bio: [
     "Max Oliver founded MXT in 2024 out of a simple frustration: the interesting work never fit inside one job title. Software, design, film, music — all of it wanted to be built, and none of it wanted to wait for permission.",
-    "So MXT became the container. What started as a personal studio for shipping software and releasing music grew into four working divisions — engineering, a client web agency, an animation studio, and the business ops that hold them together.",
+    "So MXT became the container. What started as a personal studio for shipping software and releasing music grew into three working divisions — engineering, a client web agency, and an animation studio — plus the business ops that hold them together.",
     "Max still writes the code, directs the films, and answers the client emails. The goal was never to be big. It was to be able to make anything.",
   ],
 };

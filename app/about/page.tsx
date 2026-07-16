@@ -35,8 +35,9 @@ export default function AboutPage() {
             <p className={s.heroLead}>
               MXT Productions is an independent studio in {site.location}. It
               started as one person shipping software and releasing music, and
-              grew into four divisions that still run under one roof — and mostly
-              one pair of hands.
+              grew into three working divisions — plus the business ops that
+              hold them together — all under one roof, and mostly one pair of
+              hands.
             </p>
           </Reveal>
         </div>
@@ -113,7 +114,7 @@ export default function AboutPage() {
         <Reveal>
           <span className="eyebrow">Under the roof</span>
           <h2 style={{ fontSize: "clamp(1.8rem,4.5vw,3rem)", margin: "1rem 0 2rem" }}>
-            Four divisions, one company
+            Three divisions, one company
           </h2>
         </Reveal>
         <Reveal className={s.recap}>
