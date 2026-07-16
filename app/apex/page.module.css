@@ -1,0 +1,344 @@
+/* ═══ MXT APEX — animation studio, cinematic ═══ */
+
+.wrap {
+  position: relative;
+}
+/* heavier film grain just for Apex */
+.filmGrain {
+  position: fixed;
+  inset: 0;
+  z-index: 901;
+  pointer-events: none;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='.05'/%3E%3C/svg%3E");
+  animation: grain 0.6s steps(3) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-40px, 30px); }
+}
+
+.hero {
+  position: relative;
+  min-height: 92svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 6rem;
+  overflow: hidden;
+}
+.heroWash {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+      ellipse 70% 60% at 70% 40%,
+      rgba(240, 177, 42, 0.14),
+      transparent 60%
+    ),
+    radial-gradient(ellipse 50% 60% at 15% 80%, rgba(200, 90, 16, 0.1), transparent 55%);
+}
+/* letterbox bars */
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(2.2rem, 6vh, 4rem);
+  background: #000;
+  z-index: 3;
+}
+.barTop {
+  top: 0;
+}
+.barBot {
+  bottom: 0;
+}
+.heroInner {
+  position: relative;
+  z-index: 2;
+}
+.callrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+.hero h1 {
+  font-size: clamp(3.4rem, 15vw, 11rem);
+  line-height: 0.82;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+.hero h1 .ax {
+  color: var(--accent);
+  text-shadow: 0 0 60px var(--accent-glow);
+}
+.heroSub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  color: var(--bone);
+  max-width: 26ch;
+  line-height: 1.35;
+  margin: 1.8rem 0 2rem;
+}
+.heroMeta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.heroMeta b {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+/* now in production — the slate */
+.slate {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+.poster {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--hair);
+  background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(240, 177, 42, 0.22), transparent 60%),
+    linear-gradient(180deg, #1a1206 0%, #0a0805 60%, #05040a 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.6rem;
+}
+.poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23p)' opacity='.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+.posterTop {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash);
+  position: relative;
+  z-index: 1;
+}
+.posterMid {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.posterMark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  color: var(--accent);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+.posterCode {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-top: 0.8rem;
+}
+.posterBot {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ash-dim);
+  text-align: center;
+}
+
+.prodInfo .eyebrow {
+  margin-bottom: 1.2rem;
+}
+.prodTitle {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.prodCode {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+}
+.prodLog {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--bone);
+  margin-bottom: 2rem;
+  max-width: 34ch;
+}
+.prodStats {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.prodStat .k {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash-dim);
+  margin-bottom: 0.4rem;
+}
+.prodStat .v {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--bone);
+}
+
+/* reel / released */
+.reel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.frame {
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #12100a, #0a0810);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.35s ease;
+}
+.frame:hover {
+  border-color: var(--accent);
+}
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 10px,
+    rgba(240, 177, 42, 0.03) 10px 11px
+  );
+}
+.frameLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.frameLabel .play {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+.emptyReel {
+  border: 1px dashed var(--hair);
+  border-radius: 6px;
+  padding: clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+}
+.emptyReel h3 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  color: var(--bone);
+  margin-bottom: 0.8rem;
+}
+.emptyReel p {
+  color: var(--ash);
+  max-width: 44ch;
+  margin: 0 auto;
+}
+
+/* team — credits roll */
+.credits {
+  border-top: 1px solid var(--hair);
+}
+.credit {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--hair);
+  transition: padding-left 0.35s ease;
+}
+.credit:hover {
+  padding-left: 1rem;
+}
+.creditRole {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.creditName {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  letter-spacing: -0.02em;
+  text-align: right;
+}
+.creditName.open {
+  color: var(--ash-dim);
+}
+
+@media (max-width: 860px) {
+  .slate {
+    grid-template-columns: 1fr;
+  }
+  .poster {
+    max-width: 320px;
+    margin-inline: auto;
+  }
+  .reel {
+    grid-template-columns: 1fr;
+  }
+  .credit {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  .creditName {
+    text-align: left;
+  }
+}

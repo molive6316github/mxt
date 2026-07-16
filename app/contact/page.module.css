@@ -1,0 +1,153 @@
+/* ═══ CONTACT — switchboard ═══ */
+
+.hero {
+  padding-top: clamp(9rem, 18vh, 12rem);
+  padding-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+.hero h1 {
+  font-size: clamp(3rem, 11vw, 8rem);
+  line-height: 0.88;
+}
+.hero h1 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--signal);
+}
+.heroLead {
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: var(--ash);
+  max-width: 44ch;
+  margin-top: 1.6rem;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+/* left — switchboard */
+.board {
+  position: sticky;
+  top: 6rem;
+}
+.boardLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash-dim);
+  margin-bottom: 1.2rem;
+}
+.routes {
+  display: grid;
+  gap: 1px;
+  background: var(--hair);
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+.route {
+  background: var(--ink);
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  transition: background 0.3s ease;
+}
+.route:hover {
+  background: var(--ink-2);
+}
+.route .led {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rc);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--rc);
+}
+.route .info {
+  flex: 1;
+}
+.route .name {
+  font-size: 0.95rem;
+  color: var(--bone);
+}
+.route .desc {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-top: 0.2rem;
+}
+.route .call {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: var(--rc);
+}
+.direct {
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  padding: 1.4rem 1.5rem;
+}
+.direct h4 {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash-dim);
+  margin-bottom: 0.8rem;
+  font-weight: 400;
+}
+.direct a {
+  display: block;
+  color: var(--bone);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  transition: color 0.2s ease;
+}
+.direct a:hover {
+  color: var(--signal);
+}
+.direct p {
+  color: var(--ash);
+  font-size: 0.82rem;
+  margin-top: 0.6rem;
+}
+
+/* right — form panel */
+.panel {
+  background: var(--ink-2);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  padding: clamp(1.8rem, 4vw, 3rem);
+}
+.panelHead {
+  margin-bottom: 2rem;
+}
+.panelHead h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin: 0.8rem 0 0.6rem;
+}
+.panelHead p {
+  color: var(--ash);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 44ch;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .board {
+    position: relative;
+    top: 0;
+  }
+}

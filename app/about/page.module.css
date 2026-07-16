@@ -1,0 +1,217 @@
+/* ═══ ABOUT / TEAM ═══ */
+
+.hero {
+  padding-top: clamp(9rem, 18vh, 12rem);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 9vw, 7rem);
+  line-height: 0.9;
+  max-width: 15ch;
+}
+.hero h1 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--signal);
+}
+.heroLead {
+  font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--ash);
+  max-width: 52ch;
+  margin-top: 2rem;
+}
+
+/* founder */
+.founder {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+.portrait {
+  position: sticky;
+  top: 6rem;
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--hair);
+  background: radial-gradient(ellipse 80% 70% at 50% 30%, rgba(125, 232, 216, 0.14), transparent 60%),
+    linear-gradient(180deg, #0d1414 0%, #08080e 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.6rem;
+}
+.portraitInitials {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(4rem, 12vw, 7rem);
+  line-height: 0.8;
+  color: var(--signal);
+  letter-spacing: -0.03em;
+  margin-top: auto;
+}
+.portraitMeta {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ash);
+  display: flex;
+  justify-content: space-between;
+}
+.founderBody .eyebrow {
+  margin-bottom: 1.4rem;
+}
+.founderName {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1;
+}
+.founderRole {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin: 0.9rem 0 2rem;
+}
+.founderBody p {
+  color: var(--ash);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: 1.3rem;
+  max-width: 60ch;
+}
+.founderBody p:first-of-type {
+  color: var(--bone);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+}
+.aka {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ash);
+  border: 1px solid var(--hair);
+  border-radius: 100px;
+  padding: 0.4rem 0.9rem;
+  display: inline-block;
+  margin-top: 0.6rem;
+}
+
+/* mission band */
+.mission {
+  border-block: 1px solid var(--hair);
+  background: linear-gradient(180deg, transparent, rgba(125, 232, 216, 0.02));
+}
+.missionInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.missionQuote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  line-height: 1.25;
+  color: var(--bone);
+}
+.missionQuote em {
+  color: var(--signal);
+}
+.missionBody p {
+  color: var(--ash);
+  line-height: 1.8;
+  max-width: 46ch;
+}
+
+/* timeline */
+.timeline {
+  border-top: 1px solid var(--hair);
+}
+.event {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.6rem, 3vw, 2.4rem) 0;
+  border-bottom: 1px solid var(--hair);
+  align-items: baseline;
+  transition: background 0.35s ease;
+}
+.eventYear {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--signal);
+  letter-spacing: -0.02em;
+}
+.eventText {
+  color: var(--ash);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 54ch;
+}
+
+/* divisions recap */
+.recap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.recapItem {
+  background: var(--ink-2);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  transition: background 0.3s ease;
+}
+.recapItem:hover {
+  background: var(--ink-3);
+}
+.recapCall {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: var(--rc);
+  margin-bottom: 0.8rem;
+}
+.recapName {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.recapRole {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+
+@media (max-width: 860px) {
+  .founder,
+  .missionInner {
+    grid-template-columns: 1fr;
+  }
+  .portrait {
+    position: relative;
+    top: 0;
+    max-width: 320px;
+  }
+  .event {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  .recap {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .recap {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,165 @@
+/* ═══ MXT LEGAL — quiet document / ledger ═══ */
+
+.hero {
+  padding-top: clamp(9rem, 18vh, 12rem);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--hair);
+}
+.docHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ash);
+  padding-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--hair);
+}
+.docHead .ref {
+  color: var(--accent);
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 9vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+.heroLead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  line-height: 1.5;
+  color: var(--bone);
+  max-width: 30ch;
+  margin-top: 1.8rem;
+}
+
+/* preamble */
+.preamble {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+.preambleLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash-dim);
+  padding-top: 0.4rem;
+}
+.preambleBody p {
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  line-height: 1.75;
+  color: var(--ash);
+  max-width: 60ch;
+  margin-bottom: 1.2rem;
+}
+.preambleBody b {
+  color: var(--bone);
+  font-weight: 500;
+}
+
+/* clauses / ledger */
+.clauses {
+  border-top: 1px solid var(--hair);
+}
+.clause {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.8rem, 3.5vw, 2.6rem) 0;
+  border-bottom: 1px solid var(--hair);
+  align-items: baseline;
+}
+.clauseNum {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.clause h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.7rem;
+}
+.clause p {
+  color: var(--ash);
+  line-height: 1.75;
+  max-width: 62ch;
+  font-size: 0.98rem;
+}
+
+/* note strip */
+.note {
+  border: 1px solid var(--hair);
+  border-left: 2px solid var(--accent);
+  border-radius: 2px;
+  padding: clamp(1.6rem, 3vw, 2.2rem);
+  display: flex;
+  gap: 1.4rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.noteMark {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  padding-top: 0.2rem;
+}
+.note p {
+  color: var(--ash);
+  line-height: 1.7;
+  max-width: 56ch;
+  font-size: 0.95rem;
+  margin: 0;
+}
+.note a {
+  color: var(--bone);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.signature {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--hair);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ash-dim);
+}
+.signature .who {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--bone);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media (max-width: 720px) {
+  .preamble {
+    grid-template-columns: 1fr;
+  }
+  .clause {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
