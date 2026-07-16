@@ -435,6 +435,82 @@ nav.dk .nav-ham span{background:var(--muted);}
   #cur,#cur-ring,.tdot{display:none!important;}
   body{cursor:auto!important;}
 }
+
+/* ── SPOTIFY PREVIEW ── */
+.spotify-wrap{overflow:hidden;max-height:0;opacity:0;transition:max-height .6s cubic-bezier(.16,1,.3,1),opacity .4s .05s;margin-top:0;}
+.spotify-wrap.open{max-height:168px;opacity:1;margin-top:1rem;}
+.spotify-wrap iframe{display:block;border-radius:6px;border:none;}
+.btn-preview{
+  display:inline-flex;align-items:center;gap:.45rem;margin-top:.85rem;
+  font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);background:none;border:1px solid var(--muted2);
+  padding:.5rem .9rem;cursor:pointer;transition:color .25s,border-color .25s;
+}
+.btn-preview:hover{color:var(--cyan);border-color:var(--cyan-dim);}
+.btn-preview svg{width:9px;height:9px;transition:transform .35s cubic-bezier(.16,1,.3,1);fill:currentColor;flex-shrink:0;}
+.btn-preview.open svg{transform:rotate(180deg);}
+.btn-preview.open{color:var(--cyan);border-color:var(--cyan-dim);}
+
+/* ── RELEASES ── */
+#releases-panel{border-top:1px solid rgba(125,232,216,.06);background:var(--bg);}
+.rl-header{padding:4rem 3.5rem 1.5rem;max-width:1280px;margin:0 auto;}
+.rl-ey{font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan-dim);margin-bottom:.6rem;}
+.rl-ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-style:italic;font-weight:300;color:var(--text);}
+.rel-list{border-top:1px solid rgba(125,232,216,.07);border-bottom:1px solid rgba(125,232,216,.07);}
+.rel-row{
+  display:flex;align-items:center;gap:1.75rem;
+  padding:1.2rem 3.5rem;border-bottom:1px solid rgba(125,232,216,.05);
+  text-decoration:none;color:inherit;
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.rel-row::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(125,232,216,.04),transparent 55%);
+  transform:translateX(-102%);transition:transform .45s cubic-bezier(.16,1,.3,1);
+}
+.rel-row:hover::before{transform:translateX(0);}
+.rel-n{font-size:.43rem;letter-spacing:.3em;color:var(--muted2);width:1.8rem;flex-shrink:0;}
+.rel-swatch{
+  width:42px;height:42px;flex-shrink:0;border-radius:3px;
+  border:1px solid var(--border);
+  display:grid;place-items:center;
+  transition:border-color .3s,box-shadow .3s;
+}
+.rel-row:hover .rel-swatch{border-color:var(--cyan-dim);box-shadow:0 0 12px rgba(125,232,216,.08);}
+.rel-info{flex:1;min-width:0;}
+.rel-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rel-by{font-size:.44rem;letter-spacing:.22em;color:var(--muted);margin-top:.2rem;text-transform:uppercase;}
+.rel-badge{
+  font-size:.42rem;letter-spacing:.22em;text-transform:uppercase;
+  padding:.16rem .5rem;border-radius:2px;
+  background:rgba(125,232,216,.04);color:var(--cyan-dim);
+  border:1px solid var(--border);flex-shrink:0;
+}
+.rel-yr{font-size:.46rem;letter-spacing:.2em;color:var(--muted2);flex-shrink:0;width:2.8rem;text-align:right;}
+.rel-go{font-size:.5rem;color:var(--muted2);flex-shrink:0;transition:color .25s,transform .25s;}
+.rel-row:hover .rel-go{color:var(--cyan);transform:translate(2px,-2px);}
+.rel-more{
+  padding:1.4rem 3.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  background:var(--bg);
+}
+.rel-more-txt{font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted2);}
+.rel-more-links{display:flex;gap:.75rem;}
+@media(max-width:860px){
+  .rl-header{padding:3rem 1.5rem 1rem;}
+  .rel-row{padding:1rem 1.5rem;gap:1rem;}
+  .rel-more{padding:1rem 1.5rem;}
+}
+
+/* ── FILM FORMATS ── */
+.film-formats{display:flex;flex-direction:column;gap:.65rem;margin-bottom:2.2rem;}
+.ff-item{
+  display:flex;align-items:center;gap:.8rem;
+  font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);
+  transition:color .3s;
+}
+.ff-item:hover{color:var(--gold);}
+.ff-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;box-shadow:0 0 6px rgba(232,160,32,.35);}
 </style>
 </head>
 <body>
@@ -513,6 +589,12 @@ nav.dk .nav-ham span{background:var(--muted);}
       <p class="ac-desc">Piano, composition, and original works. Live performances and studio recordings spanning classical influence and contemporary electronic.</p>
       <div class="rr"><div class="rr-tag">Latest Release</div><div class="rr-title">Darkside (Piano Cover)</div><div class="rr-meta">Single &nbsp;·&nbsp; 2025</div></div>
       <a href="https://open.spotify.com/artist/2Sun0dPVvkRS4VfdQepcdO" target="_blank" rel="noopener noreferrer" class="btn"><span class="b">Listen on Spotify ↗</span></a>
+      <button class="btn-preview" id="prevBtn1" aria-controls="sp1" aria-expanded="false">
+        <svg viewBox="0 0 10 7"><polygon points="0,0 10,0 5,7"/></svg>Preview
+      </button>
+      <div class="spotify-wrap" id="sp1" aria-hidden="true">
+        <iframe src="https://open.spotify.com/embed/artist/2Sun0dPVvkRS4VfdQepcdO?utm_source=generator&theme=0" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
     </div>
     <div class="acard" id="ac2">
       <div class="ac-ey">Producer</div>
@@ -522,6 +604,12 @@ nav.dk .nav-ham span{background:var(--muted);}
       <p class="ac-desc">Production alias. Exploring ambient, electronic, and hybrid orchestral sounds. Independently released under the MXT label.</p>
       <div class="rr"><div class="rr-tag">Latest Release</div><div class="rr-title">On Fire</div><div class="rr-meta">Single &nbsp;·&nbsp; 2026</div></div>
       <a href="https://open.spotify.com/artist/7A0nLlwxjd2L6ORHGZv7iL" target="_blank" rel="noopener noreferrer" class="btn btn-g"><span class="b">Explore ↗</span></a>
+      <button class="btn-preview" id="prevBtn2" aria-controls="sp2" aria-expanded="false">
+        <svg viewBox="0 0 10 7"><polygon points="0,0 10,0 5,7"/></svg>Preview
+      </button>
+      <div class="spotify-wrap" id="sp2" aria-hidden="true">
+        <iframe src="https://open.spotify.com/embed/artist/7A0nLlwxjd2L6ORHGZv7iL?utm_source=generator&theme=0" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
     </div>
   </div>
   <div class="lstrip" id="lstrip">
@@ -529,6 +617,60 @@ nav.dk .nav-ham span{background:var(--muted);}
     <a href="/contact" class="btn"><span class="b">Work With Us ↗</span></a>
   </div>
 </div>
+</section>
+
+<!-- ═══ RELEASES ═══ -->
+<section id="releases-panel" aria-label="Selected Works">
+  <div class="rl-header" id="rlHead">
+    <div class="rl-ey">Selected Works</div>
+    <div class="rl-ttl">Recent Releases</div>
+  </div>
+  <div class="rel-list">
+    <a href="https://open.spotify.com/artist/7A0nLlwxjd2L6ORHGZv7iL" target="_blank" rel="noopener noreferrer" class="rel-row" id="rr1">
+      <div class="rel-n">01</div>
+      <div class="rel-swatch" style="background:linear-gradient(135deg,rgba(125,232,216,.14),rgba(58,191,173,.06));">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="6.5" stroke="rgba(125,232,216,.35)" stroke-width="1.2"/><polygon points="7.5,6.5 13,9 7.5,11.5" fill="rgba(125,232,216,.55)"/></svg>
+      </div>
+      <div class="rel-info">
+        <div class="rel-name">On Fire</div>
+        <div class="rel-by">molive6316</div>
+      </div>
+      <div class="rel-badge">Single</div>
+      <div class="rel-yr">2026</div>
+      <div class="rel-go">↗</div>
+    </a>
+    <a href="https://open.spotify.com/artist/2Sun0dPVvkRS4VfdQepcdO" target="_blank" rel="noopener noreferrer" class="rel-row" id="rr2">
+      <div class="rel-n">02</div>
+      <div class="rel-swatch" style="background:linear-gradient(135deg,rgba(232,160,32,.14),rgba(200,90,16,.06));">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="4.5" y="4.5" width="9" height="9" rx="1.5" stroke="rgba(232,160,32,.4)" stroke-width="1.2"/><line x1="9" y1="6.5" x2="9" y2="11.5" stroke="rgba(232,160,32,.6)" stroke-width="1.2"/><line x1="6.5" y1="9" x2="11.5" y2="9" stroke="rgba(232,160,32,.6)" stroke-width="1.2"/></svg>
+      </div>
+      <div class="rel-info">
+        <div class="rel-name">Darkside (Piano Cover)</div>
+        <div class="rel-by">Max Oliver</div>
+      </div>
+      <div class="rel-badge">Single</div>
+      <div class="rel-yr">2025</div>
+      <div class="rel-go">↗</div>
+    </a>
+    <div class="rel-row" style="opacity:.32;pointer-events:none;" aria-hidden="true">
+      <div class="rel-n">—</div>
+      <div class="rel-swatch" style="background:rgba(125,232,216,.02);"></div>
+      <div class="rel-info">
+        <div class="rel-name" style="color:var(--muted);">+ 8 more releases</div>
+        <div class="rel-by">MXT Records · All platforms</div>
+      </div>
+      <div class="rel-badge" style="color:var(--muted2);border-color:var(--muted2);background:none;">Catalogue</div>
+      <div class="rel-yr" style="color:var(--muted2);">—</div>
+      <div class="rel-go"></div>
+    </div>
+  </div>
+  <div class="rel-more">
+    <span class="rel-more-txt">Distributed globally on all major platforms</span>
+    <div class="rel-more-links">
+      <a href="https://open.spotify.com/artist/2Sun0dPVvkRS4VfdQepcdO" target="_blank" rel="noopener noreferrer" class="btn btn-g" style="font-size:.5rem;padding:.5rem 1rem;"><span class="b">Max Oliver ↗</span></a>
+      <a href="https://open.spotify.com/artist/7A0nLlwxjd2L6ORHGZv7iL" target="_blank" rel="noopener noreferrer" class="btn" style="font-size:.5rem;padding:.5rem 1rem;"><span class="b">molive6316 ↗</span></a>
+    </div>
+  </div>
 </section>
 
 <!-- ═══ SOFTWARE ═══ -->
@@ -563,6 +705,11 @@ nav.dk .nav-ham span{background:var(--muted);}
     </div>
     <div id="filmR">
       <p class="film-q">"Stories that don't fit anywhere else. Film, animation, and multimedia narrative — built from the ground up."</p>
+      <div class="film-formats">
+        <div class="ff-item"><div class="ff-dot"></div>Short Film</div>
+        <div class="ff-item"><div class="ff-dot"></div>Animation</div>
+        <div class="ff-item"><div class="ff-dot"></div>Multimedia Narrative</div>
+      </div>
       <div class="film-come">In Development</div>
     </div>
   </div>
@@ -619,6 +766,11 @@ nav.dk .nav-ham span{background:var(--muted);}
 <footer>
   <div class="foot-mark">MXT</div>
   <div class="foot-r">
+    <nav class="foot-nav" aria-label="External links">
+      <a href="https://open.spotify.com/artist/2Sun0dPVvkRS4VfdQepcdO" target="_blank" rel="noopener noreferrer">Spotify</a>
+      <a href="https://grraphic.xyz" target="_blank" rel="noopener noreferrer">Grraphic</a>
+      <a href="/contact">Contact</a>
+    </nav>
     <p class="foot-cp">© 2026 MXT Productions</p>
     <p class="foot-cp foot-url">mxt.productions</p>
   </div>
@@ -1090,6 +1242,27 @@ if(!prefersReduced){
   },{threshold:.6});
   statEls.forEach(el=>statObs.observe(el));
 }
+
+/* ── SPOTIFY PREVIEW TOGGLE ── */
+[[1,'prevBtn1','sp1'],[2,'prevBtn2','sp2']].forEach(([_,btnId,wrapId])=>{
+  const btn=document.getElementById(btnId),wrap=document.getElementById(wrapId);
+  if(!btn||!wrap)return;
+  btn.addEventListener('click',()=>{
+    const open=wrap.classList.toggle('open');
+    btn.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',String(open));
+    wrap.setAttribute('aria-hidden',String(!open));
+  });
+});
+
+/* ── RELEASES SCROLL ANIMATION ── */
+gsap.from('#rlHead',{y:28,opacity:0,duration:.85,ease:'power3.out',
+  scrollTrigger:{trigger:'#releases-panel',start:'top 80%'}});
+['rr1','rr2'].forEach((id,i)=>{
+  const el=document.getElementById(id);
+  if(el)gsap.from(el,{x:-50,opacity:0,duration:.75,ease:'power3.out',delay:i*.13,
+    scrollTrigger:{trigger:el,start:'top 88%'}});
+});
 
 /* ── SECTION-AWARE CURSOR COLOR ── */
 {
