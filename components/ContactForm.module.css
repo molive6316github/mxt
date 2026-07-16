@@ -1,0 +1,110 @@
+.form {
+  display: grid;
+  gap: 1.1rem;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+}
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+.field.full {
+  grid-column: 1 / -1;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.label .req {
+  color: var(--accent);
+}
+.input,
+.select,
+.textarea {
+  width: 100%;
+  background: var(--ink-2);
+  border: 1px solid var(--hair);
+  border-radius: 3px;
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.85rem 1rem;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--ash-dim);
+}
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--ink-3);
+}
+.select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a948a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.4rem;
+}
+.textarea {
+  min-height: 8rem;
+  resize: vertical;
+  line-height: 1.6;
+}
+.honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.submitRow {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+.status {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+.status.err {
+  color: #e88a8a;
+}
+.status.ok {
+  color: var(--accent);
+}
+.success {
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+}
+.success h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin-bottom: 0.6rem;
+}
+.success p {
+  color: var(--ash);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 620px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
