@@ -1,74 +1,101 @@
-import type { Metadata } from "next";
-import {
-  Bricolage_Grotesque,
-  Archivo,
-  DM_Mono,
-  Cormorant_Garamond,
-} from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Big_Shoulders, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { site } from "@/content/site";
+import MotionProvider from "@/components/MotionProvider";
+import { studio } from "@/content/mxt";
 
-const display = Bricolage_Grotesque({
+const display = Big_Shoulders({
   subsets: ["latin"],
+  weight: ["700", "800", "900"],
   variable: "--f-display",
+  adjustFontFallback: false,
+  fallback: ["Arial Narrow", "sans-serif"],
   display: "swap",
 });
-const body = Archivo({
+const sans = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--f-body",
+  variable: "--f-sans",
   display: "swap",
 });
-const mono = DM_Mono({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--f-mono",
-  display: "swap",
-});
-const serif = Cormorant_Garamond({
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
-  style: ["italic", "normal"],
-  variable: "--f-serif",
+  variable: "--f-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://${site.domain}`),
+  metadataBase: new URL(studio.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s — ${site.name}`,
+    default: `${studio.name} — we build cool shit`,
+    template: `%s — ${studio.name}`,
   },
-  description: site.description,
+  description: studio.description,
+  applicationName: studio.name,
+  keywords: [
+    "MXT Productions",
+    "web agency",
+    "small business websites",
+    "GateKey",
+    "Grraphic",
+    "Rootweave",
+    "animation studio",
+    "music label",
+    "molive6316",
+    "Arq",
+  ],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: site.name,
-    description: site.description,
-    url: `https://${site.domain}`,
-    siteName: site.name,
     type: "website",
+    url: studio.url,
+    siteName: studio.name,
+    title: `${studio.name} — we build cool shit`,
+    description: studio.oneLiner,
+    locale: "en_US",
   },
-  twitter: { card: "summary_large_image", title: site.name, description: site.description },
-  icons: {
-    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2308080e'/%3E%3Ctext x='16' y='22' font-family='monospace' font-weight='bold' font-size='13' fill='%237de8d8' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E",
+  twitter: {
+    card: "summary_large_image",
+    title: `${studio.name} — we build cool shit`,
+    description: studio.oneLiner,
   },
+  robots: { index: true, follow: true },
 };
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0c0b09" },
+    { media: "(prefers-color-scheme: light)", color: "#efe9dc" },
+  ],
+};
+
+// Runs before paint so a saved light-mode choice never flashes dark first.
+const themeScript = `try{if(localStorage.getItem("mxt-theme")==="light")document.documentElement.classList.add("light")}catch(e){}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${mono.variable} ${serif.variable}`}
+      suppressHydrationWarning
+      className={`${display.variable} ${sans.variable} ${mono.variable}`}
     >
-      <body>
-        <a href="#main" className="skip">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-dvh overflow-x-clip">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-fg focus:px-4 focus:py-2 focus:text-bg"
+        >
           Skip to content
         </a>
         <div className="grain" aria-hidden="true" />
-        <div className="scan" aria-hidden="true" />
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );
