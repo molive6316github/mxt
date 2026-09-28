@@ -7,8 +7,8 @@
 export const studio = {
   name: "MXT Productions",
   short: "MXT",
-  domain: "mxtproductions.com",
-  url: "https://mxtproductions.com",
+  domain: "mxt.productions",
+  url: "https://mxt.productions",
   email: "hello@mxt.productions",
   founded: 2024,
   location: "Greenville, SC",

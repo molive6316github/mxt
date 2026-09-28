@@ -1,6 +1,6 @@
 # MXT Productions
 
-The mxtproductions.com site — a single-page, dark-by-default studio site for
+The mxt.productions site — a single-page, dark-by-default studio site for
 MXT's four divisions (**mCloud**, **Apex**, **Records**, **Dev**) and its
 products (GateKey, Grraphic, Rootweave, Pi Live, Drifthost).
 
