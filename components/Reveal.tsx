@@ -1,43 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import * as m from "motion/react-m";
 
 type Props = {
-  children: ReactNode;
-  delay?: number;
+  children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  delay?: number;
+  y?: number;
+  as?: "div" | "li" | "article" | "section";
 };
 
-export default function Reveal({ children, delay = 0, className = "", style }: Props) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setShown(true);
-            io.disconnect();
-          }
-        });
-      },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
+/** Fades + lifts its children in the first time they scroll into view. */
+export default function Reveal({ children, className, style, delay = 0, y = 28, as = "div" }: Props) {
+  const Tag = m[as];
   return (
-    <div
-      ref={ref}
-      className={`reveal ${shown ? "in" : ""} ${className}`.trim()}
-      style={{ ["--d" as string]: `${delay}ms`, ...style }}
+    <Tag
+      className={className}
+      style={style}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -12% 0px" }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

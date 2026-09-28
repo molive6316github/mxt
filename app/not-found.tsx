@@ -1,33 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "404 — nothing here",
+  robots: { index: false },
+};
 
 export default function NotFound() {
   return (
-    <section
-      style={{
-        minHeight: "70svh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        padding: "8rem 1.5rem 4rem",
-      }}
-    >
-      <span className="callsign" style={{ color: "var(--signal)" }}>
-        SIGNAL LOST — 404
-      </span>
-      <h1
-        className="display"
-        style={{ fontSize: "clamp(3rem, 14vw, 8rem)", margin: "1.2rem 0" }}
-      >
-        Off air.
-      </h1>
-      <p className="lead" style={{ margin: "0 auto 2rem" }}>
-        That channel doesn&apos;t exist — or it hasn&apos;t started broadcasting
-        yet.
+    <section className="flex min-h-[80svh] flex-col items-center justify-center px-4 pt-24 text-center">
+      <p className="eyebrow text-signal">Error 404</p>
+      <h1 className="display my-6 text-[clamp(4rem,18vw,12rem)]">Wrong turn.</h1>
+      <p className="mb-10 max-w-[40ch] text-lg text-fg/75">
+        This page doesn&apos;t exist. Either you typo&apos;d, or we haven&apos;t built it yet.
       </p>
       <Link href="/" className="btn">
-        Back to the studio →
+        Back to the studio <span aria-hidden="true">→</span>
       </Link>
     </section>
   );
