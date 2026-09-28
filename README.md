@@ -1,7 +1,7 @@
 # MXT Productions
 
-The mxtproductions.com site — a single-page, dark-by-default studio site for
-MXT's four divisions (**mCloud**, **Apex**, **Records**, **Dev**) and its
+The mxt.productions site — a single-page, dark-by-default studio site for
+MXT's three divisions (**mCloud**, **Apex** — media: animation and music — and **Dev**) and its
 products (GateKey, Grraphic, Rootweave, Pi Live, Drifthost).
 
 **Stack:** Next.js (App Router) · TypeScript · Tailwind CSS v4 · Motion
@@ -40,8 +40,8 @@ content/mxt.ts          ← all editable content
 ## Theming
 
 Colors are CSS variables in `globals.css`, exposed to Tailwind as `bg`, `fg`,
-`muted`, `line`, `signal`, and one per division (`mcloud`, `apex`, `records`,
-`dev`). Dark is the default; the toggle adds `html.light` and remembers the
+`muted`, `line`, `signal`, one per division (`mcloud`, `apex`, `dev`) and a
+lime accent (`records`) used for music and "live" markers. Dark is the default; the toggle adds `html.light` and remembers the
 choice in `localStorage` (applied before paint, so no flash).
 
 ## Contact form

@@ -7,18 +7,18 @@
 export const studio = {
   name: "MXT Productions",
   short: "MXT",
-  domain: "mxtproductions.com",
-  url: "https://mxtproductions.com",
+  domain: "mxt.productions",
+  url: "https://mxt.productions",
   email: "hello@mxt.productions",
   founded: 2024,
   location: "Greenville, SC",
   oneLiner:
     "A creative tech studio building web products, auth platforms, animated films and records — for our clients and for ourselves.",
   description:
-    "MXT Productions is a multi-division creative tech studio: web builds for small businesses (mCloud), animated film (Apex), music (Records) and our own products (Dev) — GateKey, Grraphic, Rootweave and more.",
+    "MXT Productions is a multi-division creative tech studio: web builds for small businesses (mCloud), media — animation and music (Apex), and our own products (Dev) — GateKey, Grraphic, Rootweave and more.",
 };
 
-export type DivisionSlug = "mcloud" | "apex" | "records" | "dev";
+export type DivisionSlug = "mcloud" | "apex" | "dev";
 
 export type Division = {
   slug: DivisionSlug;
@@ -31,6 +31,8 @@ export type Division = {
   /** CSS color token name — see globals.css */
   color: string;
   cta: { label: string; href: string };
+  /** sub-units that live inside the division */
+  units?: { name: string; note: string; href?: string }[];
 };
 
 export const divisions: Division[] = [
@@ -49,27 +51,20 @@ export const divisions: Division[] = [
     slug: "apex",
     index: "02",
     name: "Apex",
-    role: "Animated film studio",
-    pitch: "Stories that don't fit anywhere else, frame by frame.",
-    body: "MXT's animation arm. The first project is deep in development — storyboards, style frames, a lot of coffee. Nothing to watch yet. Soon.",
-    status: "in development",
-    color: "var(--c-apex)",
-    cta: { label: "Follow along", href: "#footer" },
-  },
-  {
-    slug: "records",
-    index: "03",
-    name: "Records",
-    role: "Music label",
-    pitch: "Two artists. One label. No gatekeepers.",
-    body: "The in-house label, home to molive6316 and Max Oliver. Independently released through DistroKid and streaming on every major platform.",
+    role: "Media",
+    pitch: "Stories and sound — frame by frame, track by track.",
+    body: "MXT's media division. Apex handles everything media: animation and music. The first film is deep in development, and the music is already out.",
     status: "releasing",
-    color: "var(--c-records)",
+    color: "var(--c-apex)",
     cta: { label: "Go listen", href: "#music" },
+    units: [
+      { name: "Animation", note: "First film in development" },
+      { name: "Music", note: "molive6316 & Max Oliver, out now", href: "#music" },
+    ],
   },
   {
     slug: "dev",
-    index: "04",
+    index: "03",
     name: "Dev",
     role: "Internal dev arm",
     pitch: "We build the tools we wish existed. Then we ship them.",
@@ -123,8 +118,8 @@ export const products: Product[] = [
     description:
       "Conlang tooling that lives inside your Obsidian vault. For people who looked at English and thought \"I can do better.\" Live on the community marketplace.",
     stack: ["Obsidian plugin", "Markdown"],
-    href: "https://obsidian.md/plugins?search=rootweave",
-    linkLabel: "Obsidian marketplace",
+    href: "https://community.obsidian.md/plugins/rootweave",
+    linkLabel: "Obsidian community",
     stat: { value: "200+", label: "installs" },
   },
   {
@@ -173,15 +168,14 @@ export const artists: Artist[] = [
 ];
 
 export const socials = [
-  { label: "GitHub", href: "https://github.com/molive6316github" },
+  { label: "GitHub", href: "https://github.com/mxt-productions" },
   { label: "Email", href: `mailto:${studio.email}` },
 ];
 
 export const contactTopics = [
   { value: "mcloud", label: "A website / app for my business" },
   { value: "dev", label: "Something with one of the products" },
-  { value: "records", label: "Music stuff" },
-  { value: "apex", label: "Film / animation" },
+  { value: "apex", label: "Music, film or animation" },
   { value: "general", label: "Just saying hi" },
 ];
 

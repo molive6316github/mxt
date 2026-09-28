@@ -14,7 +14,7 @@ export default function Divisions() {
             <>
               One studio,
               <br />
-              <span className="text-signal">four</span> side quests.
+              <span className="text-signal">three</span> side quests.
             </>
           }
           aside={
@@ -67,6 +67,22 @@ export default function Divisions() {
                     <p className="mt-3 max-w-[52ch] leading-relaxed text-fg/70 transition-colors md:group-hover:text-bg/80">
                       {d.body}
                     </p>
+                    {d.units && (
+                      <ul className="mt-5 space-y-2 border-l-2 border-[var(--dc)] pl-4 transition-colors md:group-hover:border-bg">
+                        {d.units.map((u) => (
+                          <li key={u.name} className="text-sm">
+                            {u.href ? (
+                              <a href={u.href} className="font-semibold underline decoration-1 underline-offset-4">
+                                {u.name}
+                              </a>
+                            ) : (
+                              <span className="font-semibold">{u.name}</span>
+                            )}
+                            <span className="text-fg/65 transition-colors md:group-hover:text-bg/75"> — {u.note}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
 
                   <div className="flex flex-col justify-between gap-4 md:col-span-2 md:items-end">
