@@ -23,7 +23,7 @@ export default function Music() {
         <SectionHead
           id="music-title"
           index="03"
-          kicker="MXT Records"
+          kicker="MXT Apex / Records"
           title={
             <>
               Put your

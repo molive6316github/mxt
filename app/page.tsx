@@ -38,7 +38,7 @@ const jsonLd = {
     ...artists.map((a) => ({
       "@type": "MusicGroup",
       name: a.name,
-      recordLabel: { "@type": "Organization", name: "MXT Records" },
+      recordLabel: { "@type": "Organization", name: "MXT Records", parentOrganization: { "@type": "Organization", name: "MXT Apex" } },
     })),
   ],
 };

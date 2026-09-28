@@ -1,7 +1,7 @@
 # MXT Productions
 
 The mxt.productions site — a single-page, dark-by-default studio site for
-MXT's four divisions (**mCloud**, **Apex**, **Records**, **Dev**) and its
+MXT's three divisions (**mCloud**, **Apex** — media, incl. MXT Records — and **Dev**) and its
 products (GateKey, Grraphic, Rootweave, Pi Live, Drifthost).
 
 **Stack:** Next.js (App Router) · TypeScript · Tailwind CSS v4 · Motion

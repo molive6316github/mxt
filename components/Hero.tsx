@@ -51,7 +51,7 @@ export default function Hero() {
           </span>
           <span>Est. {studio.founded}</span>
           <span>{studio.location}</span>
-          <span className="sm:ml-auto">4 divisions · 5 products · 1 studio</span>
+          <span className="sm:ml-auto">3 divisions · 5 products · 1 studio</span>
         </div>
 
         <h1 id="hero-title" className="display mt-10 text-[clamp(3.25rem,15vw,14rem)] sm:mt-14">

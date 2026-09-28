@@ -15,10 +15,10 @@ export const studio = {
   oneLiner:
     "A creative tech studio building web products, auth platforms, animated films and records — for our clients and for ourselves.",
   description:
-    "MXT Productions is a multi-division creative tech studio: web builds for small businesses (mCloud), animated film (Apex), music (Records) and our own products (Dev) — GateKey, Grraphic, Rootweave and more.",
+    "MXT Productions is a multi-division creative tech studio: web builds for small businesses (mCloud), media including animated film and MXT Records (Apex), and our own products (Dev) — GateKey, Grraphic, Rootweave and more.",
 };
 
-export type DivisionSlug = "mcloud" | "apex" | "records" | "dev";
+export type DivisionSlug = "mcloud" | "apex" | "dev";
 
 export type Division = {
   slug: DivisionSlug;
@@ -31,6 +31,8 @@ export type Division = {
   /** CSS color token name — see globals.css */
   color: string;
   cta: { label: string; href: string };
+  /** sub-units that live inside the division */
+  units?: { name: string; note: string; href?: string }[];
 };
 
 export const divisions: Division[] = [
@@ -49,27 +51,20 @@ export const divisions: Division[] = [
     slug: "apex",
     index: "02",
     name: "Apex",
-    role: "Animated film studio",
-    pitch: "Stories that don't fit anywhere else, frame by frame.",
-    body: "MXT's animation arm. The first project is deep in development — storyboards, style frames, a lot of coffee. Nothing to watch yet. Soon.",
-    status: "in development",
-    color: "var(--c-apex)",
-    cta: { label: "Follow along", href: "#footer" },
-  },
-  {
-    slug: "records",
-    index: "03",
-    name: "Records",
-    role: "Music label",
-    pitch: "Two artists. One label. No gatekeepers.",
-    body: "The in-house label, home to molive6316 and Max Oliver. Independently released through DistroKid and streaming on every major platform.",
+    role: "Media",
+    pitch: "Stories and sound — frame by frame, track by track.",
+    body: "MXT's media division. Apex covers animated film and music: the first film is deep in development, and MXT Records is already putting out releases.",
     status: "releasing",
-    color: "var(--c-records)",
+    color: "var(--c-apex)",
     cta: { label: "Go listen", href: "#music" },
+    units: [
+      { name: "Film", note: "Animated film studio — first project in development" },
+      { name: "MXT Records", note: "Music label — molive6316 & Max Oliver", href: "#music" },
+    ],
   },
   {
     slug: "dev",
-    index: "04",
+    index: "03",
     name: "Dev",
     role: "Internal dev arm",
     pitch: "We build the tools we wish existed. Then we ship them.",

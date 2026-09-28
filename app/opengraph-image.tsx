@@ -9,7 +9,6 @@ export default function OpengraphImage() {
   const chips = [
     ["mCloud", "#52adff"],
     ["Apex", "#ff5a93"],
-    ["Records", "#c8f23a"],
     ["Dev", "#ff7a2e"],
   ];
   return new ImageResponse(
