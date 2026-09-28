@@ -15,7 +15,7 @@ export const studio = {
   oneLiner:
     "A creative tech studio building web products, auth platforms, animated films and records — for our clients and for ourselves.",
   description:
-    "MXT Productions is a multi-division creative tech studio: web builds for small businesses (mCloud), media including animated film and MXT Records (Apex), and our own products (Dev) — GateKey, Grraphic, Rootweave and more.",
+    "MXT Productions is a multi-division creative tech studio: web builds for small businesses (mCloud), media — animation and music (Apex), and our own products (Dev) — GateKey, Grraphic, Rootweave and more.",
 };
 
 export type DivisionSlug = "mcloud" | "apex" | "dev";
@@ -53,13 +53,13 @@ export const divisions: Division[] = [
     name: "Apex",
     role: "Media",
     pitch: "Stories and sound — frame by frame, track by track.",
-    body: "MXT's media division. Apex covers animated film and music: the first film is deep in development, and MXT Records is already putting out releases.",
+    body: "MXT's media division. Apex handles everything media: animation and music. The first film is deep in development, and the music is already out.",
     status: "releasing",
     color: "var(--c-apex)",
     cta: { label: "Go listen", href: "#music" },
     units: [
-      { name: "Film", note: "Animated film studio — first project in development" },
-      { name: "MXT Records", note: "Music label — molive6316 & Max Oliver", href: "#music" },
+      { name: "Animation", note: "First film in development" },
+      { name: "Music", note: "molive6316 & Max Oliver, out now", href: "#music" },
     ],
   },
   {
@@ -118,8 +118,8 @@ export const products: Product[] = [
     description:
       "Conlang tooling that lives inside your Obsidian vault. For people who looked at English and thought \"I can do better.\" Live on the community marketplace.",
     stack: ["Obsidian plugin", "Markdown"],
-    href: "https://obsidian.md/plugins?search=rootweave",
-    linkLabel: "Obsidian marketplace",
+    href: "https://community.obsidian.md/plugins/rootweave",
+    linkLabel: "Obsidian community",
     stat: { value: "200+", label: "installs" },
   },
   {
@@ -168,15 +168,14 @@ export const artists: Artist[] = [
 ];
 
 export const socials = [
-  { label: "GitHub", href: "https://github.com/molive6316github" },
+  { label: "GitHub", href: "https://github.com/mxt-productions" },
   { label: "Email", href: `mailto:${studio.email}` },
 ];
 
 export const contactTopics = [
   { value: "mcloud", label: "A website / app for my business" },
   { value: "dev", label: "Something with one of the products" },
-  { value: "records", label: "Music stuff" },
-  { value: "apex", label: "Film / animation" },
+  { value: "apex", label: "Music, film or animation" },
   { value: "general", label: "Just saying hi" },
 ];
 

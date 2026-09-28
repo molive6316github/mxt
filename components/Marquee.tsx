@@ -6,7 +6,6 @@ const items = [
   "Drifthost",
   "mCloud",
   "Apex",
-  "Records",
   "Dev",
 ];
 

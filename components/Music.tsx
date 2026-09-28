@@ -23,7 +23,7 @@ export default function Music() {
         <SectionHead
           id="music-title"
           index="03"
-          kicker="MXT Apex / Records"
+          kicker="MXT Apex / Music"
           title={
             <>
               Put your
@@ -61,7 +61,7 @@ export default function Music() {
                       style={{ background: s.bg, color: s.ink }}
                     >
                       <div className="flex justify-between font-mono text-[0.68rem] uppercase tracking-[0.16em]">
-                        <span>MXT Records</span>
+                        <span>MXT Apex</span>
                         <span>CAT-00{i + 1}</span>
                       </div>
                       <h3
@@ -94,7 +94,7 @@ export default function Music() {
           })}
         </div>
 
-        <p className="eyebrow mt-16">Distributed via DistroKid · © MXT Records</p>
+        <p className="eyebrow mt-16">Distributed via DistroKid · © MXT Apex</p>
       </div>
     </section>
   );
