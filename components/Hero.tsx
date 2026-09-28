@@ -6,7 +6,7 @@ import * as m from "motion/react-m";
 import { divisions, studio } from "@/content/mxt";
 import Wordmark from "./Wordmark";
 
-const words = ["cool shit", "websites", "auth", "cartoons", "bangers", "plugins"];
+const words = ["bold things", "websites", "platforms", "films", "records", "products"];
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
@@ -51,11 +51,11 @@ export default function Hero() {
           </span>
           <span>Est. {studio.founded}</span>
           <span>{studio.location}</span>
-          <span className="sm:ml-auto">4 divisions · 1 human · 0 chill</span>
+          <span className="sm:ml-auto">4 divisions · 5 products · 1 studio</span>
         </div>
 
-        <h1 id="hero-title" className="display mt-10 text-[clamp(4.2rem,16vw,14rem)] sm:mt-14">
-          <span className="sr-only">We build cool shit — websites, auth platforms, animated films and records.</span>
+        <h1 id="hero-title" className="display mt-10 text-[clamp(3.25rem,15vw,14rem)] sm:mt-14">
+          <span className="sr-only">We build bold things — websites, platforms, animated films and records.</span>
           <span aria-hidden="true" className="block overflow-hidden pb-[0.04em]">
             <span className="intro-rise block">We build</span>
           </span>

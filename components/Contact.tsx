@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 import WorkForm from "./WorkForm";
 
 const perks = [
-  "You talk to the person writing the code",
+  "Work directly with the team building it",
   "Custom builds — no theme-store templates",
   "Fast, mobile-first, SEO baked in",
   "You own the code, the domain, the data",
@@ -19,7 +19,7 @@ export default function Contact() {
           </p>
           <h2 id="contact-title" className="display text-[clamp(3.2rem,8vw,6.5rem)]">
             Your business deserves a site that{" "}
-            <span className="text-mcloud">doesn&apos;t suck.</span>
+            <span className="text-mcloud">actually works.</span>
           </h2>
           <p className="mt-6 max-w-[44ch] text-lg leading-relaxed text-fg/80">
             mCloud builds websites, web apps and the digital bits in between for small businesses.

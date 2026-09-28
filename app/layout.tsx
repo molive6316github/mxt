@@ -29,7 +29,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(studio.url),
   title: {
-    default: `${studio.name} — we build cool shit`,
+    default: `${studio.name} — creative tech studio`,
     template: `%s — ${studio.name}`,
   },
   description: studio.description,
@@ -44,20 +44,20 @@ export const metadata: Metadata = {
     "animation studio",
     "music label",
     "molive6316",
-    "Arq",
+    "Max Oliver",
   ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: studio.url,
     siteName: studio.name,
-    title: `${studio.name} — we build cool shit`,
+    title: `${studio.name} — creative tech studio`,
     description: studio.oneLiner,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${studio.name} — we build cool shit`,
+    title: `${studio.name} — creative tech studio`,
     description: studio.oneLiner,
   },
   robots: { index: true, follow: true },

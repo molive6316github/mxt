@@ -13,7 +13,7 @@ export const studio = {
   founded: 2024,
   location: "Greenville, SC",
   oneLiner:
-    "A one-person creative tech studio. We build web apps, auth platforms, animated films and records — mostly at 2am.",
+    "A creative tech studio building web products, auth platforms, animated films and records — for our clients and for ourselves.",
   description:
     "MXT Productions is a multi-division creative tech studio: web builds for small businesses (mCloud), animated film (Apex), music (Records) and our own products (Dev) — GateKey, Grraphic, Rootweave and more.",
 };
@@ -40,7 +40,7 @@ export const divisions: Division[] = [
     name: "mCloud",
     role: "Web agency",
     pitch: "Your business, but it loads fast and looks expensive.",
-    body: "Sites, web apps and digital plumbing for small businesses. Custom-built, not dragged out of a theme store. You talk to the person writing the code.",
+    body: "Sites, web apps and digital plumbing for small businesses. Custom-built, not dragged out of a theme store, and handled start to finish by the team that builds it.",
     status: "open for work",
     color: "var(--c-mcloud)",
     cta: { label: "Start a project", href: "#contact" },
@@ -61,8 +61,8 @@ export const divisions: Division[] = [
     index: "03",
     name: "Records",
     role: "Music label",
-    pitch: "Two artists. Zero A&R meetings.",
-    body: "The in-house label for molive6316 and Arq. Everything's self-released through DistroKid and lands on every platform you actually use.",
+    pitch: "Two artists. One label. No gatekeepers.",
+    body: "The in-house label, home to molive6316 and Max Oliver. Independently released through DistroKid and streaming on every major platform.",
     status: "releasing",
     color: "var(--c-records)",
     cta: { label: "Go listen", href: "#music" },
@@ -100,7 +100,7 @@ export const products: Product[] = [
     status: "Live",
     flagship: true,
     description:
-      "One login to rule them all. Discord OAuth plus four OAuth providers, TOTP, passkeys over WebAuthn, recovery codes and proper admin tooling. Self-hosted Postgres, no vendor lock-in, and passwords hashed with argon2id like adults.",
+      "One login to rule them all. Discord OAuth plus four OAuth providers, TOTP, passkeys over WebAuthn, recovery codes and proper admin tooling. Self-hosted Postgres, no vendor lock-in, and passwords hashed with argon2id, the way it should be done.",
     stack: ["Next.js 14", "Postgres", "Drizzle ORM", "Arctic OAuth", "WebAuthn", "argon2id"],
     href: "https://gatekey.cc",
     linkLabel: "gatekey.cc",
@@ -111,7 +111,7 @@ export const products: Product[] = [
     kind: "AI design review",
     status: "Live",
     description:
-      "Drop in a design, get honest feedback. An AI reviewer that tells you your hierarchy is mid before your client does.",
+      "Drop in a design, get honest feedback. An AI reviewer that spots what's off before your client does.",
     stack: ["AI"], // TODO: add the real stack
     href: "https://grraphic.xyz",
     linkLabel: "grraphic.xyz",
@@ -162,13 +162,13 @@ const searchLinks = (q: string) => [
 export const artists: Artist[] = [
   {
     name: "molive6316",
-    blurb: "The main project. Beats, loops and whatever was stuck in my head that week.",
+    blurb: "Beats, loops and late-night experiments. The label's flagship project.",
     links: searchLinks("molive6316"),
   },
   {
-    name: "Arq",
-    blurb: "The other alias. Different room, different mood, same late nights.",
-    links: searchLinks("Arq"),
+    name: "Max Oliver",
+    blurb: "Releases under the Max Oliver name. A different room, a different mood.",
+    links: searchLinks("Max Oliver"),
   },
 ];
 

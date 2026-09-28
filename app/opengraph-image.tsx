@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { studio } from "@/content/mxt";
 
-export const alt = `${studio.name} — we build cool shit`;
+export const alt = `${studio.name} — we build bold things`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -33,7 +33,7 @@ export default function OpengraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", fontSize: 150, fontWeight: 900, lineHeight: 0.9, letterSpacing: -4 }}>
           <span>WE BUILD</span>
-          <span style={{ color: "#ff5b1f" }}>COOL SHIT.</span>
+          <span style={{ color: "#ff5b1f" }}>BOLD THINGS.</span>
         </div>
         <div style={{ display: "flex", gap: 14 }}>
           {chips.map(([name, color]) => (

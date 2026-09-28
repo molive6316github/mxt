@@ -58,7 +58,7 @@ export default function WorkForm() {
         >
           <p className="display text-6xl text-signal">Got it.</p>
           <p className="mt-4 max-w-[40ch] text-lg text-fg/80">
-            Your message landed. Expect a reply from an actual human within a day or two.
+            Your message landed. Someone on the team will get back to you within a day or two.
           </p>
           <button type="button" className="btn btn-ghost mt-8" onClick={() => setState("idle")}>
             Send another
